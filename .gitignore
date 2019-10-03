@@ -7,5 +7,4 @@ desktop.ini
 *.Rcheck
 *.tar.gz
 Rplots.pdf
-docs/
 inst/doc

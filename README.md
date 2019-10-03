@@ -1,12 +1,11 @@
 roperators
 ==========
 
-  <!-- badges: start -->
+<!-- badges: start -->
 [![Build
 Status](https://travis-ci.com/JWiley/roperators.svg?branch=master)](https://travis-ci.com/JWiley/roperators)
-
-  [![Codecov test coverage](https://codecov.io/gh/JWiley/roperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/roperators?branch=master)
-  <!-- badges: end -->
+[![Codecov test coverage](https://codecov.io/gh/JWiley/roperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/roperators?branch=master)
+<!-- badges: end -->
 
 
 An `R` package with some simple operators to help speed up everyday
