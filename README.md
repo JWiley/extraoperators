@@ -2,6 +2,9 @@ roperators
 ==========
 
   <!-- badges: start -->
+[![Build
+Status](https://travis-ci.com/JWiley/roperators.svg?branch=master)](https://travis-ci.com/JWiley/roperators)
+
   [![Codecov test coverage](https://codecov.io/gh/JWiley/roperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/roperators?branch=master)
   <!-- badges: end -->
 
