@@ -9,7 +9,7 @@ Authors@R:
            email = "jwiley.psych@gmail.com",
            comment = c(ORCID = "0000-0002-0271-6702"))
 URL: http://joshuawiley.com/extraoperators, https://github.com/JWiley/extraoperators
-BugReports: https://github.com/JWiley/roperators/issues	   
+BugReports: https://github.com/JWiley/extraoperators/issues	   
 Description: This package has extra R operators to help speed up common tasks.
 License: MIT + file LICENSE
 Encoding: UTF-8
