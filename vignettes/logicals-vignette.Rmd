@@ -17,13 +17,13 @@ knitr::opts_chunk$set(
 To start, load the package.
 
 ```{r setup}
-library(roperators)
+library(extraoperators)
 ```
 
 # Logical Comparisons
 
 This section covers basic logical comparisons and shows how they might
-be done in base `R` versus using the `roperators` package. Many of
+be done in base `R` versus using the `extraoperators` package. Many of
 these are quite simple, but are defined so that later operators are
 possible.
 
@@ -60,21 +60,21 @@ etc.
 
 ```{r}
 
-## roperators: greater than 3?
+## extraoperators: greater than 3?
 sample_numbers %g% 3
 
-## roperators: greater than or equal to 3?
+## extraoperators: greater than or equal to 3?
 sample_numbers %ge% 3
 
-## roperators: less than 3?
+## extraoperators: less than 3?
 sample_numbers %l% 3
 
-## roperators: less than or equal to 3?
+## extraoperators: less than or equal to 3?
 sample_numbers %le% 3
 
 ```
 
-So far there is no real gain in using `roperators` but this changes
+So far there is no real gain in using `extraoperators` but this changes
 for more complex operations. What if we want to know if our values
 fall within some range? This is a fairly common task, such as saying
 that valid ages must be between 0 and 100 years.
@@ -96,33 +96,33 @@ sample_numbers >= 3 & sample_numbers <= 10
 ```
 
 Base `R` accomplishes this through chaining of
-operations. `roperators` has built in range operators.
+operations. `extraoperators` has built in range operators.
 
 
 ```{r} 
 
-## roperators: greater than 3 and less than 10?
+## extraoperators: greater than 3 and less than 10?
 sample_numbers %gl% c(3, 10)
 
-## roperators: greater than or equal to 3 and less than 10?
+## extraoperators: greater than or equal to 3 and less than 10?
 sample_numbers %gel% c(3, 10)
 
-## roperators: greater than 3 and less than or equal to 10?
+## extraoperators: greater than 3 and less than or equal to 10?
 sample_numbers %gle% c(3, 10)
 
-## roperators: greater than or equal to 3 and less than or equal to 10?
+## extraoperators: greater than or equal to 3 and less than or equal to 10?
 sample_numbers %gele% c(3, 10)
 
 ```
 
-Finally, `roperators` includes a `not in` operator, `%!in%`.
+Finally, `extraoperators` includes a `not in` operator, `%!in%`.
 
 ```{r}
 
 ## base R: not in 3 or 10
 !sample_numbers %in% c(3, 10)
 
-## roperators: not in 3 or 10
+## extraoperators: not in 3 or 10
 sample_numbers %!in% c(3, 10)
 
 ``` 
@@ -133,7 +133,7 @@ prefixes: `?`, `s` and `a`.
 # Indices (Which Values?)
 
 Sometimes we want to use a logical comparison and identify indices,
-such as to use in a loop. `roperators` does this by prefixing
+such as to use in a loop. `extraoperators` does this by prefixing
 operators with `?` for "which".
 
 ```{r}
@@ -141,13 +141,13 @@ operators with `?` for "which".
 ## base R: what are the indices that match 3 and 10?
 which(sample_numbers %in% c(3, 10))
 
-## roperators: what are the indices that match 3 and 10?
+## extraoperators: what are the indices that match 3 and 10?
 sample_numbers %?in% c(3, 10)
 
 ## base R: what are the indices for numbers between 3 and 10?
 which(sample_numbers > 3 & sample_numbers < 10)
 
-## roperators: what are the indices for numbers between 3 and 10?
+## extraoperators: what are the indices for numbers between 3 and 10?
 sample_numbers %?gl% c(3, 10)
 
 ``` 
@@ -159,7 +159,7 @@ This can be readily incorporated in other code for further processing.
 Another fairly common task is selecting only certain observations.
 For example, we might want to calculate the average of numbers within
 a plausible range (e.g., excluding outliers).
-In `roperators` subsetting is done by adding an `s` prefix.
+In `extraoperators` subsetting is done by adding an `s` prefix.
 
 ```{r}
 
@@ -169,7 +169,7 @@ mean(subset(sample_numbers, sample_numbers > 3 & sample_numbers < 10))
 ## or equivalently 
 mean(sample_numbers[sample_numbers > 3 & sample_numbers < 10])
 
-## roperators: subset to only numbers between 3 and 10
+## extraoperators: subset to only numbers between 3 and 10
 mean(sample_numbers %sgl% c(3, 10))
 
 ```
@@ -181,7 +181,7 @@ values. Subsetting makes it fast to "zoom in" on a specific range.
 # All (or None)
 
 Finally, you might have some quality controls in place for data. For
-example asserting that all ages are between 0 and 100. In `roperators`
+example asserting that all ages are between 0 and 100. In `extraoperators`
 this is done by adding the prefix `a`.
 
 ```{r}
@@ -189,10 +189,10 @@ this is done by adding the prefix `a`.
 ## base R: are all numbers between 0 and 10?
 all(sample_numbers > 0 & sample_numbers < 10)
 
-## roperators: are all numbers between 0 and 10?
+## extraoperators: are all numbers between 0 and 10?
 sample_numbers %agl% c(0, 10)
 
-## roperators: are all numbers between 0 and 100?
+## extraoperators: are all numbers between 0 and 100?
 sample_numbers %agl% c(0, 100)
 
 ```
@@ -202,10 +202,10 @@ can negate the whole operation.
 
 ```{r}
 
-## roperators: are NO numbers between 0 and 100?
+## extraoperators: are NO numbers between 0 and 100?
 !sample_numbers %agl% c(0, 100)
 
-## roperators: are NO numbers between 55 and 60?
+## extraoperators: are NO numbers between 55 and 60?
 !sample_numbers %agl% c(55, 60)
 
 ```

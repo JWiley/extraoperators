@@ -1,4 +1,4 @@
 library(testthat)
-library(roperators)
+library(extraoperators)
 
-test_check("roperators")
+test_check("extraoperators")

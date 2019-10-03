@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Logical Operators • roperators</title>
+<title>Logical Operators • extraoperators</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">roperators</a>
+        <a class="navbar-link" href="../index.html">extraoperators</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -64,7 +64,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JWiley/roperators">
+  <a href="https://github.com/JWiley/extraoperators">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -85,7 +85,7 @@
       <h1>Logical Operators</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JWiley/roperators/blob/master/vignettes/logicals-vignette.Rmd"><code>vignettes/logicals-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JWiley/extraoperators/blob/master/vignettes/logicals-vignette.Rmd"><code>vignettes/logicals-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>logicals-vignette.Rmd</code></div>
 
     </div>
@@ -93,11 +93,11 @@
     
     
 <p>To start, load the package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(roperators)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(extraoperators)</span></code></pre></div>
 <div id="logical-comparisons" class="section level1">
 <h1 class="hasAnchor">
 <a href="#logical-comparisons" class="anchor"></a>Logical Comparisons</h1>
-<p>This section covers basic logical comparisons and shows how they might be done in base <code>R</code> versus using the <code>roperators</code> package. Many of these are quite simple, but are defined so that later operators are possible.</p>
+<p>This section covers basic logical comparisons and shows how they might be done in base <code>R</code> versus using the <code>extraoperators</code> package. Many of these are quite simple, but are defined so that later operators are possible.</p>
 <p>First let’s define our “data” as some numbers stored in <code>sample_numbers</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2"></a>sample_numbers &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">99</span>)</span></code></pre></div>
@@ -120,22 +120,22 @@
 <span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
 <p>Unfortunately, we cannot use <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code> or <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> in custom operators, so we use the substitutions: <code>g = &gt;</code> and <code>l = &lt;</code> and <code>e = =</code>. So that <code>ge = &lt;=</code> etc.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## roperators: greater than 3?</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## extraoperators: greater than 3?</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>sample_numbers <span class="op">%g%</span><span class="st"> </span><span class="dv">3</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">## roperators: greater than or equal to 3?</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">## extraoperators: greater than or equal to 3?</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a>sample_numbers <span class="op">%ge%</span><span class="st"> </span><span class="dv">3</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">## roperators: less than 3?</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">## extraoperators: less than 3?</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a>sample_numbers <span class="op">%l%</span><span class="st"> </span><span class="dv">3</span></span>
 <span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
 <span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">## roperators: less than or equal to 3?</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">## extraoperators: less than or equal to 3?</span></span>
 <span id="cb4-15"><a href="#cb4-15"></a>sample_numbers <span class="op">%le%</span><span class="st"> </span><span class="dv">3</span></span>
 <span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
-<p>So far there is no real gain in using <code>roperators</code> but this changes for more complex operations. What if we want to know if our values fall within some range? This is a fairly common task, such as saying that valid ages must be between 0 and 100 years.</p>
+<p>So far there is no real gain in using <code>extraoperators</code> but this changes for more complex operations. What if we want to know if our values fall within some range? This is a fairly common task, such as saying that valid ages must be between 0 and 100 years.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">## base R: greater than 3 and less than 10?</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>sample_numbers <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>sample_numbers <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span></span>
@@ -152,30 +152,30 @@
 <span id="cb5-14"><a href="#cb5-14"></a><span class="co">## base R: greater than or equal to 3 and less than or equal to 10?</span></span>
 <span id="cb5-15"><a href="#cb5-15"></a>sample_numbers <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>sample_numbers <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span></span>
 <span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE</span></span></code></pre></div>
-<p>Base <code>R</code> accomplishes this through chaining of operations. <code>roperators</code> has built in range operators.</p>
+<p>Base <code>R</code> accomplishes this through chaining of operations. <code>extraoperators</code> has built in range operators.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">## roperators: greater than 3 and less than 10?</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">## extraoperators: greater than 3 and less than 10?</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>sample_numbers <span class="op">%gl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">## roperators: greater than or equal to 3 and less than 10?</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">## extraoperators: greater than or equal to 3 and less than 10?</span></span>
 <span id="cb6-7"><a href="#cb6-7"></a>sample_numbers <span class="op">%gel%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">## roperators: greater than 3 and less than or equal to 10?</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">## extraoperators: greater than 3 and less than or equal to 10?</span></span>
 <span id="cb6-11"><a href="#cb6-11"></a>sample_numbers <span class="op">%gle%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE</span></span>
 <span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">## roperators: greater than or equal to 3 and less than or equal to 10?</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">## extraoperators: greater than or equal to 3 and less than or equal to 10?</span></span>
 <span id="cb6-15"><a href="#cb6-15"></a>sample_numbers <span class="op">%gele%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE</span></span></code></pre></div>
-<p>Finally, <code>roperators</code> includes a <code>not in</code> operator, <code><a href="../reference/logicals.html">%!in%</a></code>.</p>
+<p>Finally, <code>extraoperators</code> includes a <code>not in</code> operator, <code><a href="../reference/logicals.html">%!in%</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="co">## base R: not in 3 or 10</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="op">!</span>sample_numbers <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">## roperators: not in 3 or 10</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">## extraoperators: not in 3 or 10</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a>sample_numbers <span class="op">%!in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>The next sections show a few examples of these operators augmented by prefixes: <code>?</code>, <code>s</code> and <code>a</code>.</p>
@@ -183,13 +183,13 @@
 <div id="indices-which-values" class="section level1">
 <h1 class="hasAnchor">
 <a href="#indices-which-values" class="anchor"></a>Indices (Which Values?)</h1>
-<p>Sometimes we want to use a logical comparison and identify indices, such as to use in a loop. <code>roperators</code> does this by prefixing operators with <code>?</code> for “which”.</p>
+<p>Sometimes we want to use a logical comparison and identify indices, such as to use in a loop. <code>extraoperators</code> does this by prefixing operators with <code>?</code> for “which”.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">## base R: what are the indices that match 3 and 10?</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(sample_numbers <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>))</span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; [1] 4 6</span></span>
 <span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">## roperators: what are the indices that match 3 and 10?</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">## extraoperators: what are the indices that match 3 and 10?</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a>sample_numbers <span class="op">%?in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; [1] 4 6</span></span>
 <span id="cb8-9"><a href="#cb8-9"></a></span>
@@ -197,7 +197,7 @@
 <span id="cb8-11"><a href="#cb8-11"></a><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(sample_numbers <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>sample_numbers <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)</span>
 <span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; [1] 1 3 5</span></span>
 <span id="cb8-13"><a href="#cb8-13"></a></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## roperators: what are the indices for numbers between 3 and 10?</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## extraoperators: what are the indices for numbers between 3 and 10?</span></span>
 <span id="cb8-15"><a href="#cb8-15"></a>sample_numbers <span class="op">%?gl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>)</span>
 <span id="cb8-16"><a href="#cb8-16"></a><span class="co">#&gt; [1] 1 3 5</span></span></code></pre></div>
 <p>This can be readily incorporated in other code for further processing.</p>
@@ -205,7 +205,7 @@
 <div id="subsetting" class="section level1">
 <h1 class="hasAnchor">
 <a href="#subsetting" class="anchor"></a>Subsetting</h1>
-<p>Another fairly common task is selecting only certain observations. For example, we might want to calculate the average of numbers within a plausible range (e.g., excluding outliers). In <code>roperators</code> subsetting is done by adding an <code>s</code> prefix.</p>
+<p>Another fairly common task is selecting only certain observations. For example, we might want to calculate the average of numbers within a plausible range (e.g., excluding outliers). In <code>extraoperators</code> subsetting is done by adding an <code>s</code> prefix.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">## base R: subset to only numbers between 3 and 10</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(sample_numbers, sample_numbers <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>sample_numbers <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>))</span>
@@ -215,7 +215,7 @@
 <span id="cb9-7"><a href="#cb9-7"></a><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(sample_numbers[sample_numbers <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>sample_numbers <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>])</span>
 <span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; [1] 6</span></span>
 <span id="cb9-9"><a href="#cb9-9"></a></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">## roperators: subset to only numbers between 3 and 10</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">## extraoperators: subset to only numbers between 3 and 10</span></span>
 <span id="cb9-11"><a href="#cb9-11"></a><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(sample_numbers <span class="op">%sgl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>, <span class="dv">10</span>))</span>
 <span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
 <p>Subsetting can be especially useful in quick exploratory analyses. Graphs are easily hard to read if there are extreme values. Subsetting makes it fast to “zoom in” on a specific range.</p>
@@ -223,26 +223,26 @@
 <div id="all-or-none" class="section level1">
 <h1 class="hasAnchor">
 <a href="#all-or-none" class="anchor"></a>All (or None)</h1>
-<p>Finally, you might have some quality controls in place for data. For example asserting that all ages are between 0 and 100. In <code>roperators</code> this is done by adding the prefix <code>a</code>.</p>
+<p>Finally, you might have some quality controls in place for data. For example asserting that all ages are between 0 and 100. In <code>extraoperators</code> this is done by adding the prefix <code>a</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co">## base R: are all numbers between 0 and 10?</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="kw"><a href="https://rdrr.io/r/base/all.html">all</a></span>(sample_numbers <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>sample_numbers <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)</span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt; [1] FALSE</span></span>
 <span id="cb10-5"><a href="#cb10-5"></a></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="co">## roperators: are all numbers between 0 and 10?</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">## extraoperators: are all numbers between 0 and 10?</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a>sample_numbers <span class="op">%agl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
 <span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; [1] FALSE</span></span>
 <span id="cb10-9"><a href="#cb10-9"></a></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">## roperators: are all numbers between 0 and 100?</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co">## extraoperators: are all numbers between 0 and 100?</span></span>
 <span id="cb10-11"><a href="#cb10-11"></a>sample_numbers <span class="op">%agl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
 <span id="cb10-12"><a href="#cb10-12"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>If you want to know the opposite, are no numbers between 0 and 100, we can negate the whole operation.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co">## roperators: are NO numbers between 0 and 100?</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">## extraoperators: are NO numbers between 0 and 100?</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="op">!</span>sample_numbers <span class="op">%agl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; [1] FALSE</span></span>
 <span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">## roperators: are NO numbers between 55 and 60?</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">## extraoperators: are NO numbers between 55 and 60?</span></span>
 <span id="cb11-7"><a href="#cb11-7"></a><span class="op">!</span>sample_numbers <span class="op">%agl%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">55</span>, <span class="dv">60</span>)</span>
 <span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>

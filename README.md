@@ -1,10 +1,10 @@
-roperators
-==========
+extraoperators
+==============
 
 <!-- badges: start -->
 [![Build
-Status](https://travis-ci.com/JWiley/roperators.svg?branch=master)](https://travis-ci.com/JWiley/roperators)
-[![Codecov test coverage](https://codecov.io/gh/JWiley/roperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/roperators?branch=master)
+Status](https://travis-ci.com/JWiley/extraoperators.svg?branch=master)](https://travis-ci.com/JWiley/extraoperators)
+[![Codecov test coverage](https://codecov.io/gh/JWiley/extraoperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/extraoperators?branch=master)
 <!-- badges: end -->
 
 
@@ -18,7 +18,7 @@ To get the latest development version, use:
 
 ```
 #install.packages("devtools")
-devtools::install_github("JWiley/roperators")
+devtools::install_github("JWiley/extraoperators")
 ```
 
 Overview
