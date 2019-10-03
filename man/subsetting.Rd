@@ -80,7 +80,4 @@ c("jack", "jill", "john", "jane") \%sin\% c("jill", "jane", "bill")
 
 1:5 \%s!in\% c(2, 99)
 c("jack", "jill", "john", "jane") \%s!in\% c("jill", "jane", "bill")
-
-1:5 \%snin\% c(2, 99)
-c("jack", "jill", "john", "jane") \%snin\% c("jill", "jane", "bill")
 }

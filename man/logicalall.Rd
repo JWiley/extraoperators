@@ -12,6 +12,7 @@
 \alias{\%al\%}
 \alias{\%ain\%}
 \alias{\%a!in\%}
+\alias{\%anin\%}
 \title{Several ways to evaluate whether all values meet logical conditions including logical range comparison helpers}
 \usage{
 e1 \%agele\% e2
@@ -33,6 +34,8 @@ e1 \%al\% e2
 e1 \%ain\% e2
 
 e1 \%a!in\% e2
+
+e1 \%anin\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated}

@@ -108,3 +108,7 @@ NULL
 #' 1:5 %a!in% c(2, 99)
 #' c("jack", "jill", "john", "jane") %a!in% c("jill", "jane", "bill")
 `%a!in%` <- function(e1, e2) {all(e1 %!in% e2)}
+
+#' @rdname logicalall
+#' @export
+`%anin%` <- `%a!in%`

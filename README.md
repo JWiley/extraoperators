@@ -15,7 +15,7 @@ tasks.
 Installation
 ------------
 
-TO get the latest development version, use:
+To get the latest development version, use:
 
 ```
 #install.packages("devtools")
@@ -26,7 +26,7 @@ Overview
 --------
 
 The table below summarizes what this package provides. Fundamentally
-it provides 10 different logivcal operators, which can be accessed on
+it provides 10 different logical operators, which can be accessed on
 their own to return a logical vector, but also prefixed by `?` (which)
 to return the **indices** that are `TRUE` or prefixed by `s` (subset)
 to return only those **values** that are `TRUE` or prefixed by `a`
@@ -49,11 +49,7 @@ evaluation.
 | %!in% OR %nin% | Not in                                       | %?!in% OR %?nin% | %s!in% OR %snin% | %a!in% OR %anin% |
 
 
-Examples
---------
-
-```
-1:5 %nin% c(2, 99)
-1:5 %snin% c(2, 99)
-1:5 %sin% c(2, 99)
-```
+Using these ten operators, you can accomplish many different tasks by
+just remembering the additional prefixes: `?` for `which()`, `a` for
+`all()` and `s` for `subset()`. While simple, this can save quite a
+few keystrokes and make various logical comparisons less convoluted.

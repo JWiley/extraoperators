@@ -103,14 +103,7 @@ NULL
 
 #' @rdname logicals
 #' @export
-#' @examples
-#'
-#' 1:5 %nin% c(2, 99)
-#' c("jack", "jill", "john", "jane") %nin% c("jill", "jane", "bill")
-`%nin%` <- function(e1, e2) {
-  stopifnot(length(e2) > 0)
-  !(e1 %in% e2)
-}
+`%nin%` <- `%!in%`
 
 #' @rdname logicals
 #' @export

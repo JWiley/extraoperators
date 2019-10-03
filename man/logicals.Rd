@@ -73,7 +73,4 @@ Several logical range comparison helpers
 
 1:5 \%!in\% c(2, 99)
 c("jack", "jill", "john", "jane") \%!in\% c("jill", "jane", "bill")
-
-1:5 \%nin\% c(2, 99)
-c("jack", "jill", "john", "jane") \%nin\% c("jill", "jane", "bill")
 }

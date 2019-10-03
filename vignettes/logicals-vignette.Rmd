@@ -1,0 +1,211 @@
+---
+title: "Logical Operators"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{logicals-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+To start, load the package.
+
+```{r setup}
+library(roperators)
+```
+
+# Logical Comparisons
+
+This section covers basic logical comparisons and shows how they might
+be done in base `R` versus using the `roperators` package. Many of
+these are quite simple, but are defined so that later operators are
+possible.
+
+First let's define our "data" as some numbers stored in `sample_numbers`.
+
+```{r}
+
+sample_numbers <- c(9, 1, 5, 3, 4, 10, 99)
+
+``` 
+
+Now we can do a series of simple logical comparisons which return a
+logical vector of `TRUE` or `FALSE`.
+
+```{r}
+
+## base R: greater than 3?
+sample_numbers > 3
+
+## base R: greater than or equal to 3?
+sample_numbers >= 3
+
+## base R: less than 3?
+sample_numbers < 3
+
+## base R: less than or equal to 3?
+sample_numbers <= 3
+
+```
+
+Unfortunately, we cannot use `<` or `>` in custom operators, so we use
+the substitutions: `g = >` and `l = <` and `e = =`. So that `ge = <=`
+etc.
+
+```{r}
+
+## roperators: greater than 3?
+sample_numbers %g% 3
+
+## roperators: greater than or equal to 3?
+sample_numbers %ge% 3
+
+## roperators: less than 3?
+sample_numbers %l% 3
+
+## roperators: less than or equal to 3?
+sample_numbers %le% 3
+
+```
+
+So far there is no real gain in using `roperators` but this changes
+for more complex operations. What if we want to know if our values
+fall within some range? This is a fairly common task, such as saying
+that valid ages must be between 0 and 100 years.
+
+```{r} 
+
+## base R: greater than 3 and less than 10?
+sample_numbers > 3 & sample_numbers < 10
+
+## base R: greater than or equal to 3 and less than 10?
+sample_numbers >= 3 & sample_numbers < 10
+
+## base R: greater than 3 and less than or equal to 10?
+sample_numbers > 3 & sample_numbers <= 10
+
+## base R: greater than or equal to 3 and less than or equal to 10?
+sample_numbers >= 3 & sample_numbers <= 10
+
+```
+
+Base `R` accomplishes this through chaining of
+operations. `roperators` has built in range operators.
+
+
+```{r} 
+
+## roperators: greater than 3 and less than 10?
+sample_numbers %gl% c(3, 10)
+
+## roperators: greater than or equal to 3 and less than 10?
+sample_numbers %gel% c(3, 10)
+
+## roperators: greater than 3 and less than or equal to 10?
+sample_numbers %gle% c(3, 10)
+
+## roperators: greater than or equal to 3 and less than or equal to 10?
+sample_numbers %gele% c(3, 10)
+
+```
+
+Finally, `roperators` includes a `not in` operator, `%!in%`.
+
+```{r}
+
+## base R: not in 3 or 10
+!sample_numbers %in% c(3, 10)
+
+## roperators: not in 3 or 10
+sample_numbers %!in% c(3, 10)
+
+``` 
+
+The next sections show a few examples of these operators augmented by
+prefixes: `?`, `s` and `a`.
+
+# Indices (Which Values?)
+
+Sometimes we want to use a logical comparison and identify indices,
+such as to use in a loop. `roperators` does this by prefixing
+operators with `?` for "which".
+
+```{r}
+
+## base R: what are the indices that match 3 and 10?
+which(sample_numbers %in% c(3, 10))
+
+## roperators: what are the indices that match 3 and 10?
+sample_numbers %?in% c(3, 10)
+
+## base R: what are the indices for numbers between 3 and 10?
+which(sample_numbers > 3 & sample_numbers < 10)
+
+## roperators: what are the indices for numbers between 3 and 10?
+sample_numbers %?gl% c(3, 10)
+
+``` 
+
+This can be readily incorporated in other code for further processing.
+
+# Subsetting
+
+Another fairly common task is selecting only certain observations.
+For example, we might want to calculate the average of numbers within
+a plausible range (e.g., excluding outliers).
+In `roperators` subsetting is done by adding an `s` prefix.
+
+```{r}
+
+## base R: subset to only numbers between 3 and 10
+mean(subset(sample_numbers, sample_numbers > 3 & sample_numbers < 10))
+
+## or equivalently 
+mean(sample_numbers[sample_numbers > 3 & sample_numbers < 10])
+
+## roperators: subset to only numbers between 3 and 10
+mean(sample_numbers %sgl% c(3, 10))
+
+```
+
+Subsetting can be especially useful in quick exploratory
+analyses. Graphs are easily hard to read if there are extreme
+values. Subsetting makes it fast to "zoom in" on a specific range.
+
+# All (or None)
+
+Finally, you might have some quality controls in place for data. For
+example asserting that all ages are between 0 and 100. In `roperators`
+this is done by adding the prefix `a`.
+
+```{r}
+
+## base R: are all numbers between 0 and 10?
+all(sample_numbers > 0 & sample_numbers < 10)
+
+## roperators: are all numbers between 0 and 10?
+sample_numbers %agl% c(0, 10)
+
+## roperators: are all numbers between 0 and 100?
+sample_numbers %agl% c(0, 100)
+
+```
+
+If you want to know the opposite, are no numbers between 0 and 100, we
+can negate the whole operation.
+
+```{r}
+
+## roperators: are NO numbers between 0 and 100?
+!sample_numbers %agl% c(0, 100)
+
+## roperators: are NO numbers between 55 and 60?
+!sample_numbers %agl% c(55, 60)
+
+```

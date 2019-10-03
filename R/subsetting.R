@@ -111,8 +111,4 @@ NULL
 
 #' @rdname subsetting
 #' @export
-#' @examples
-#'
-#' 1:5 %snin% c(2, 99)
-#' c("jack", "jill", "john", "jane") %snin% c("jill", "jane", "bill")
-`%snin%` <- function(e1, e2) {e1[e1 %!in% e2]}
+`%snin%` <- `%s!in%`

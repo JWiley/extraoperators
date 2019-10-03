@@ -8,7 +8,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jwiley.psych@gmail.com",
            comment = c(ORCID = "0000-0002-0271-6702"))
-URL: https://github.com/JWiley/roperators
+URL: http://joshuawiley.com/roperators, https://github.com/JWiley/roperators
 BugReports: https://github.com/JWiley/roperators/issues	   
 Description: This package has extra R operators to help speed up common tasks.
 License: MIT + file LICENSE
@@ -17,4 +17,7 @@ LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

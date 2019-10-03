@@ -84,6 +84,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/logicals-vignette.html">Logical Operators</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -167,8 +179,7 @@ limits for logical comparison.</p></td>
 <span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%ge%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] FALSE  TRUE  TRUE  TRUE  TRUE</div><div class='input'>
 <span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%l%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE FALSE FALSE FALSE</div><div class='input'>
 <span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%le%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1]  TRUE  TRUE FALSE FALSE FALSE</div><div class='input'>
-<span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%!in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>99</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"jack"</span>, <span class='st'>"jill"</span>, <span class='st'>"john"</span>, <span class='st'>"jane"</span>) <span class='kw'>%!in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"jill"</span>, <span class='st'>"jane"</span>, <span class='st'>"bill"</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE FALSE</div><div class='input'>
-<span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%nin%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>99</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"jack"</span>, <span class='st'>"jill"</span>, <span class='st'>"john"</span>, <span class='st'>"jane"</span>) <span class='kw'>%nin%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"jill"</span>, <span class='st'>"jane"</span>, <span class='st'>"bill"</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE FALSE</div></pre>
+<span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%!in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>99</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"jack"</span>, <span class='st'>"jill"</span>, <span class='st'>"john"</span>, <span class='st'>"jane"</span>) <span class='kw'>%!in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"jill"</span>, <span class='st'>"jane"</span>, <span class='st'>"bill"</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
