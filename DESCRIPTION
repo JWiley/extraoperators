@@ -13,7 +13,7 @@ BugReports: https://github.com/JWiley/extraoperators/issues
 Description: Extra R operators to help speed up common tasks,
   particularly logical comparisons and routine follow up tasks
   such as finding the indices and subsetting. 
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
