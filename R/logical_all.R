@@ -112,3 +112,45 @@ NULL
 #' @rdname logicalall
 #' @export
 `%anin%` <- `%a!in%`
+
+#' @rdname logicalall
+#' @export
+#' @examples
+#'
+#' 1:5 %a==% 1:5
+#' 1:5 %a==% 5:1
+`%a==%` <- function(e1, e2) {all(e1 == e2)}
+
+#' @rdname logicalall
+#' @export
+#' @examples
+#'
+#' 1:5 %a!=% 1:5
+#' 1:5 %a!=% 5:1
+#' 1:5 %a!=% c(5, 4, 1, 3, 2)
+`%a!=%` <- function(e1, e2) {all(e1 != e2)}
+
+#' @rdname logicalall
+#' @export
+#' @examples
+#' ## define a variable
+#' sample_data <- c(1, 3, 9, 5, NA, -9)
+#'
+#' ## suppose that we expect that values should fall in [1, 10]
+#' ## unless they are special character, -9 used for unknown / refused
+#' sample_data %ac% "( >= 1 & <= 10 ) | == -9"
+#'
+#' ## we might expect some missing values and be OK as long as
+#' ## above conditions are met or values are missing
+#' sample_data %ac% "( >= 1 & <= 10 ) | == -9 | is.na"
+#'
+#' ## equally we might be expecting NO missing values
+#' ## and want missing values to come up as FALSE
+#' sample_data %ac% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+#'
+#' ## clean up
+#' rm(sample_data)
+`%ac%`  <- function(e1, e2) {
+  all(e1 %c% e2)
+}
+

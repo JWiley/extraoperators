@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • extraoperators</title>
+<title>Chain Operator — %c% • extraoperators</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,15 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Chain Operator — %c%" />
+<meta property="og:description" content="This operator allows operators on the right hand side to be
+chained together. The intended use case is when you have a
+single object on which you want to perform several operations.
+For example, testing whether a variable is between 1 and 5 or
+equals special number 9, which might be used to indicate that
+someone responded to a question (i.e., its not missing per se)
+but that they preferred not to answer or did not know the answer." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +62,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -116,66 +124,78 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Chain Operator</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JWiley/extraoperators/blob/master/R/logicals.R'><code>R/logicals.R</code></a></small>
+    <div class="hidden name"><code>grapes-c-grapes.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This operator allows operators on the right hand side to be
+chained together. The intended use case is when you have a
+single object on which you want to perform several operations.
+For example, testing whether a variable is between 1 and 5 or
+equals special number 9, which might be used to indicate that
+someone responded to a question (i.e., its not missing per se)
+but that they preferred not to answer or did not know the answer.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='no'>e1</span> <span class='kw'>%c%</span> <span class='no'>e2</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="grapes-c-grapes.html">`%c%`</a></code> </p>
-        </td>
-        <td><p>Chain Operator</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logicalall.html">`%agele%`</a></code> <code><a href="logicalall.html">`%agel%`</a></code> <code><a href="logicalall.html">`%agle%`</a></code> <code><a href="logicalall.html">`%agl%`</a></code> <code><a href="logicalall.html">`%age%`</a></code> <code><a href="logicalall.html">`%ag%`</a></code> <code><a href="logicalall.html">`%ale%`</a></code> <code><a href="logicalall.html">`%al%`</a></code> <code><a href="logicalall.html">`%ain%`</a></code> <code><a href="logicalall.html">`%a!in%`</a></code> <code><a href="logicalall.html">`%anin%`</a></code> <code><a href="logicalall.html">`%a==%`</a></code> <code><a href="logicalall.html">`%a!=%`</a></code> <code><a href="logicalall.html">`%ac%`</a></code> </p>
-        </td>
-        <td><p>Several ways to evaluate whether all values meet logical conditions including logical range comparison helpers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logicals.html">`%gele%`</a></code> <code><a href="logicals.html">`%gel%`</a></code> <code><a href="logicals.html">`%gle%`</a></code> <code><a href="logicals.html">`%gl%`</a></code> <code><a href="logicals.html">`%g%`</a></code> <code><a href="logicals.html">`%ge%`</a></code> <code><a href="logicals.html">`%l%`</a></code> <code><a href="logicals.html">`%le%`</a></code> <code><a href="logicals.html">`%!in%`</a></code> <code><a href="logicals.html">`%nin%`</a></code> <code><a href="logicals.html">`%flipIn%`</a></code> </p>
-        </td>
-        <td><p>Several logical range comparison helpers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logicalwhich.html">`%?gele%`</a></code> <code><a href="logicalwhich.html">`%?gel%`</a></code> <code><a href="logicalwhich.html">`%?gle%`</a></code> <code><a href="logicalwhich.html">`%?gl%`</a></code> <code><a href="logicalwhich.html">`%?ge%`</a></code> <code><a href="logicalwhich.html">`%?g%`</a></code> <code><a href="logicalwhich.html">`%?le%`</a></code> <code><a href="logicalwhich.html">`%?l%`</a></code> <code><a href="logicalwhich.html">`%?in%`</a></code> <code><a href="logicalwhich.html">`%?!in%`</a></code> <code><a href="logicalwhich.html">`%?nin%`</a></code> <code><a href="logicalwhich.html">`%?==%`</a></code> <code><a href="logicalwhich.html">`%?!=%`</a></code> <code><a href="logicalwhich.html">`%?c%`</a></code> </p>
-        </td>
-        <td><p>Several ways to return an index based on logical range comparison helpers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subsetting.html">`%sgele%`</a></code> <code><a href="subsetting.html">`%sgel%`</a></code> <code><a href="subsetting.html">`%sgle%`</a></code> <code><a href="subsetting.html">`%sgl%`</a></code> <code><a href="subsetting.html">`%sge%`</a></code> <code><a href="subsetting.html">`%sg%`</a></code> <code><a href="subsetting.html">`%sle%`</a></code> <code><a href="subsetting.html">`%sl%`</a></code> <code><a href="subsetting.html">`%sin%`</a></code> <code><a href="subsetting.html">`%s!in%`</a></code> <code><a href="subsetting.html">`%snin%`</a></code> <code><a href="subsetting.html">`%s==%`</a></code> <code><a href="subsetting.html">`%s!=%`</a></code> <code><a href="subsetting.html">`%sc%`</a></code> </p>
-        </td>
-        <td><p>Several ways to subset based on logical range comparison helpers</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>e1</th>
+      <td><p>The values to be operated on, on the left hand side</p></td>
+    </tr>
+    <tr>
+      <th>e2</th>
+      <td><p>A character string (it MUST be quoted) containing all
+the operators and their values to apply to `e1`. Note that in
+this character string, operators can be chained together using either
+`|` or `&amp;`. Parentheses are also supported and work as expected. See
+examples for more information on how this function is used.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a logical vector</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>`<!-- %c%` has special facilities to handle the following: -->
+`is.na`, `!is.na`, `is.nan`, and `!is.nan`. These do not need
+any values supplied but they work as expected to add those logical
+assessments into the chain of operators.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'>## define a variable</span>
+<span class='no'>sample_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>9</span>, <span class='fl'>5</span>, <span class='fl'>NA</span>, -<span class='fl'>9</span>)
+
+<span class='co'>## suppose that we expect that values should fall in [1, 10]</span>
+<span class='co'>## unless they are special character, -9 used for unknown / refused</span>
+<span class='no'>sample_data</span> <span class='kw'>%c%</span> <span class='st'>"( &gt;= 1 &amp; &lt;= 10 ) | == -9"</span></div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE   NA TRUE</div><div class='input'>
+<span class='co'>## we might expect some missing values and be OK as long as</span>
+<span class='co'>## above conditions are met or values are missing</span>
+<span class='no'>sample_data</span> <span class='kw'>%c%</span> <span class='st'>"( &gt;= 1 &amp; &lt;= 10 ) | == -9 | is.na"</span></div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE</div><div class='input'>
+<span class='co'>## equally we might be expecting NO missing values</span>
+<span class='co'>## and want missing values to come up as FALSE</span>
+<span class='no'>sample_data</span> <span class='kw'>%c%</span> <span class='st'>"(( &gt;= 1 &amp; &lt;= 10 ) | == -9) &amp; !is.na"</span></div><div class='output co'>#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</div><div class='input'>
+<span class='co'>## clean up</span>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>sample_data</span>)</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

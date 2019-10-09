@@ -119,3 +119,81 @@ NULL
     .flipMatch(v, e2)
   })
 }
+
+#' Chain Operator
+#'
+#' This operator allows operators on the right hand side to be
+#' chained together. The intended use case is when you have a
+#' single object on which you want to perform several operations.
+#' For example, testing whether a variable is between 1 and 5 or
+#' equals special number 9, which might be used to indicate that
+#' someone responded to a question (i.e., its not missing per se)
+#' but that they preferred not to answer or did not know the answer.
+#'
+#' `%c%` has special facilities to handle the following:
+#' `is.na`, `!is.na`, `is.nan`, and `!is.nan`. These do not need
+#' any values supplied but they work as expected to add those logical
+#' assessments into the chain of operators.
+#'
+#' @param e1 The values to be operated on, on the left hand side
+#' @param e2 A character string (it MUST be quoted) containing all
+#' the operators and their values to apply to `e1`. Note that in
+#' this character string, operators can be chained together using either
+#' `|` or `&`. Parentheses are also supported and work as expected. See
+#' examples for more information on how this function is used.
+#' @keywords operators logical
+#' @return a logical vector
+#' @export
+#' @examples
+#'
+#' ## define a variable
+#' sample_data <- c(1, 3, 9, 5, NA, -9)
+#'
+#' ## suppose that we expect that values should fall in [1, 10]
+#' ## unless they are special character, -9 used for unknown / refused
+#' sample_data %c% "( >= 1 & <= 10 ) | == -9"
+#'
+#' ## we might expect some missing values and be OK as long as
+#' ## above conditions are met or values are missing
+#' sample_data %c% "( >= 1 & <= 10 ) | == -9 | is.na"
+#'
+#' ## equally we might be expecting NO missing values
+#' ## and want missing values to come up as FALSE
+#' sample_data %c% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+#'
+#' ## clean up
+#' rm(sample_data)
+`%c%`  <- function(e1, e2) {
+  stopifnot(is.character(e2))
+  stopifnot(identical(length(e2), 1L))
+  stopifnot(nzchar(e2))
+
+  call <- match.call()
+  x <- as.character(call[2])
+
+  ## browser()
+  e2 <- gsub(
+    "\\|\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)",
+    sprintf("__TEMP__OR__1 \\1(%s)", x),
+    e2)
+
+  e2 <- gsub(
+    "&\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)",
+    sprintf("__TEMP__AND__1 \\1(%s)", x),
+    e2)
+
+  e2 <- gsub("(\\||\\|\\s*\\(|&|&\\s*\\()", sprintf("\\1 %s", x), e2)
+
+  e2 <- gsub("__TEMP__OR__1",  "|", e2)
+  e2 <- gsub("__TEMP__AND__1", "&", e2)
+
+  if (grepl("^\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)", e2)) {
+    e2 <- gsub("^\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)", sprintf("\\1(%s)", x), e2)
+  } else {
+    e2 <- gsub("^(\\s*\\(*)", sprintf("\\1 %s", x), e2)
+  }
+
+  e <- parent.frame()
+  eval(parse(text = e2), envir = e)
+}
+

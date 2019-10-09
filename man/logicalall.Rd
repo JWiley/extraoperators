@@ -13,6 +13,9 @@
 \alias{\%ain\%}
 \alias{\%a!in\%}
 \alias{\%anin\%}
+\alias{\%a==\%}
+\alias{\%a!=\%}
+\alias{\%ac\%}
 \title{Several ways to evaluate whether all values meet logical conditions including logical range comparison helpers}
 \usage{
 e1 \%agele\% e2
@@ -36,6 +39,12 @@ e1 \%ain\% e2
 e1 \%a!in\% e2
 
 e1 \%anin\% e2
+
+e1 \%a==\% e2
+
+e1 \%a!=\% e2
+
+e1 \%ac\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated}
@@ -80,4 +89,28 @@ c("jack", "jill", "john", "jane") \%ain\% c("jill", "jane", "bill")
 
 1:5 \%a!in\% c(2, 99)
 c("jack", "jill", "john", "jane") \%a!in\% c("jill", "jane", "bill")
+
+1:5 \%a==\% 1:5
+1:5 \%a==\% 5:1
+
+1:5 \%a!=\% 1:5
+1:5 \%a!=\% 5:1
+1:5 \%a!=\% c(5, 4, 1, 3, 2)
+## define a variable
+sample_data <- c(1, 3, 9, 5, NA, -9)
+
+## suppose that we expect that values should fall in [1, 10]
+## unless they are special character, -9 used for unknown / refused
+sample_data \%ac\% "( >= 1 & <= 10 ) | == -9"
+
+## we might expect some missing values and be OK as long as
+## above conditions are met or values are missing
+sample_data \%ac\% "( >= 1 & <= 10 ) | == -9 | is.na"
+
+## equally we might be expecting NO missing values
+## and want missing values to come up as FALSE
+sample_data \%ac\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+
+## clean up
+rm(sample_data)
 }

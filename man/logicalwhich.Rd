@@ -13,6 +13,9 @@
 \alias{\%?in\%}
 \alias{\%?!in\%}
 \alias{\%?nin\%}
+\alias{\%?==\%}
+\alias{\%?!=\%}
+\alias{\%?c\%}
 \title{Several ways to return an index based on logical range comparison helpers}
 \usage{
 e1 \%?gele\% e2
@@ -36,6 +39,12 @@ e1 \%?in\% e2
 e1 \%?!in\% e2
 
 e1 \%?nin\% e2
+
+e1 \%?==\% e2
+
+e1 \%?!=\% e2
+
+e1 \%?c\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated and for which the indices will be returned}
@@ -83,4 +92,25 @@ c("jack", "jill", "john", "jane") \%?!in\% c("jill", "jane", "bill")
 
 1:5 \%?nin\% c(2, 99)
 c("jack", "jill", "john", "jane") \%snin\% c("jill", "jane", "bill")
+
+11:15 \%?==\% c(11, 1, 13, 15, 15)
+
+11:15 \%?!=\% c(11, 1, 13, 15, 15)
+## define a variable
+sample_data <- c(1, 3, 9, 5, NA, -9)
+
+## suppose that we expect that values should fall in [1, 10]
+## unless they are special character, -9 used for unknown / refused
+sample_data \%?c\% "( >= 1 & <= 10 ) | == -9"
+
+## we might expect some missing values and be OK as long as
+## above conditions are met or values are missing
+sample_data \%?c\% "( >= 1 & <= 10 ) | == -9 | is.na"
+
+## equally we might be expecting NO missing values
+## and want missing values to come up as FALSE
+sample_data \%?c\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+
+## clean up
+rm(sample_data)
 }

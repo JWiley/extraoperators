@@ -13,6 +13,9 @@
 \alias{\%sin\%}
 \alias{\%s!in\%}
 \alias{\%snin\%}
+\alias{\%s==\%}
+\alias{\%s!=\%}
+\alias{\%sc\%}
 \title{Several ways to subset based on logical range comparison helpers}
 \usage{
 e1 \%sgele\% e2
@@ -36,6 +39,12 @@ e1 \%sin\% e2
 e1 \%s!in\% e2
 
 e1 \%snin\% e2
+
+e1 \%s==\% e2
+
+e1 \%s!=\% e2
+
+e1 \%sc\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated and subset}
@@ -80,4 +89,27 @@ c("jack", "jill", "john", "jane") \%sin\% c("jill", "jane", "bill")
 
 1:5 \%s!in\% c(2, 99)
 c("jack", "jill", "john", "jane") \%s!in\% c("jill", "jane", "bill")
+
+1:5 \%s==\% 1:5
+1:5 \%s==\% c(1:4, 1)
+
+1:5 \%s!=\% 1:5
+1:5 \%s!=\% c(1:4, 1)
+## define a variable
+sample_data <- c(1, 3, 9, 5, NA, -9)
+
+## suppose that we expect that values should fall in [1, 10]
+## unless they are special character, -9 used for unknown / refused
+sample_data \%sc\% "( >= 1 & <= 10 ) | == -9"
+
+## we might expect some missing values and be OK as long as
+## above conditions are met or values are missing
+sample_data \%sc\% "( >= 1 & <= 10 ) | == -9 | is.na"
+
+## equally we might be expecting NO missing values
+## and want missing values to come up as FALSE
+sample_data \%sc\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+
+## clean up
+rm(sample_data)
 }

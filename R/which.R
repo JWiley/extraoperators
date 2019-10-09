@@ -116,3 +116,43 @@ NULL
 #' 1:5 %?nin% c(2, 99)
 #' c("jack", "jill", "john", "jane") %snin% c("jill", "jane", "bill")
 `%?nin%` <- function(e1, e2) {which(e1 %!in% e2)}
+
+
+#' @rdname logicalwhich
+#' @export
+#' @examples
+#'
+#' 11:15 %?==% c(11, 1, 13, 15, 15)
+`%?==%` <- function(e1, e2) {which(e1 == e2)}
+
+#' @rdname logicalwhich
+#' @export
+#' @examples
+#'
+#' 11:15 %?!=% c(11, 1, 13, 15, 15)
+`%?!=%` <- function(e1, e2) {which(e1 != e2)}
+
+#' @rdname logicalwhich
+#' @export
+#' @examples
+#' ## define a variable
+#' sample_data <- c(1, 3, 9, 5, NA, -9)
+#'
+#' ## suppose that we expect that values should fall in [1, 10]
+#' ## unless they are special character, -9 used for unknown / refused
+#' sample_data %?c% "( >= 1 & <= 10 ) | == -9"
+#'
+#' ## we might expect some missing values and be OK as long as
+#' ## above conditions are met or values are missing
+#' sample_data %?c% "( >= 1 & <= 10 ) | == -9 | is.na"
+#'
+#' ## equally we might be expecting NO missing values
+#' ## and want missing values to come up as FALSE
+#' sample_data %?c% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+#'
+#' ## clean up
+#' rm(sample_data)
+`%?c%`  <- function(e1, e2) {
+  which(e1 %c% e2)
+}
+

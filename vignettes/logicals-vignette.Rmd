@@ -209,3 +209,64 @@ can negate the whole operation.
 !sample_numbers %agl% c(55, 60)
 
 ```
+
+There are also expanded all, subset, and which operators for equals
+and not equals.
+
+```{r}
+
+## extraoperators: are all values equal?
+sample_numbers %a==% sample_numbers
+
+## extraoperators: are all values NOT equal?
+c(1, 3, 5) %a!=% c(5, 1, 3)
+
+```
+
+# Chaining
+
+In language, it is fairly natural to make a statement like this:
+"In my study, age should be between 18 to 65 and not be missing."
+In `R`, the usual implementation of this is more equivalent to:
+"In my study, age should be greater than 18 and age should be less
+than 65 and age should not be missing." `extraoperators` tries to
+facilitate something closer to the cleaner original statement using
+the chaining operator, `%c%`. The chaining operator chains a set of 
+operations on the right hand side with the argument on its left hand
+side passed to each. To accomplish this, the right hand side must be
+quoted.
+
+```{r}
+age <- c(19, 30, 90, 50, NA, 45)
+age %c% "(> 18 & < 65) & !is.na"
+```
+
+Because the right hand side of the chaining operator is a character 
+string that is parsed, it is possible to do some special things in
+it. `is.na`, `!is.na`, `is.nan`, and `!is.nan` are special characters 
+that do not require any further value to work correctly. As shown,
+parentheses also work, which allows fine grained control over exactly
+what is intended. For example if we expect only adults are in the
+study, but those who refused to report their age were coded -9 and
+people who failed to complete the questionnaire at all are missing.
+
+```{r}
+age <- c(19, 30, 90, 50, NA, 16, -9)
+age %c% "(> 18 | == -9) & !is.na"
+```
+
+As with all operators, there are prefixes for all, subset, and which.
+
+```{r}
+age %ac% "(> 18 | == -9) & !is.na"
+
+age %ac% "> -Inf"
+age %ac% "> -Inf & !is.na"
+age %ac% "> -Inf | is.na"
+
+age %sc% "(> 18 | == -9) & !is.na"
+
+age %?c% "(> 18 | == -9) & !is.na"
+```
+
+

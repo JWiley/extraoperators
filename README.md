@@ -25,7 +25,7 @@ Overview
 --------
 
 The table below summarizes what this package provides. Fundamentally
-it provides 10 different logical operators, which can be accessed on
+it provides or expands on 13 different logical operators, which can be accessed on
 their own to return a logical vector, but also prefixed by `?` (which)
 to return the **indices** that are `TRUE` or prefixed by `s` (subset)
 to return only those **values** that are `TRUE` or prefixed by `a`
@@ -36,6 +36,8 @@ evaluation.
 
 | Operator       | What it does                                 | Which?           | Subset           | All              |
 |----------------|----------------------------------------------|------------------|------------------|------------------|
+| ==             | Are values / vectors equal                   | %?==%            | %s==%            | %a==%            |
+| !=             | Are values / vector NOT equal                | %?!=%            | %s!=%            | %a!=%            |
 | %l%            | Less than                                    | %?l%             | %sl%             | %al%             |
 | %le%           | Less than or equal                           | %?le%            | %sle%            | %ale%            |
 | %g%            | Greater than                                 | %?g%             | %sg%             | %ag%             |
@@ -46,6 +48,7 @@ evaluation.
 | %gele%         | Greater than or equal AND less than or equal | %?gele%          | %sgele%          | %agele%          |
 | %in%           | In                                           | %?in%            | %sin%            | %ain%            |
 | %!in% OR %nin% | Not in                                       | %?!in% OR %?nin% | %s!in% OR %snin% | %a!in% OR %anin% |
+| %c%            | Chain operations on the RHS together         | %?c%             | %sc%             | %ac%             |
 
 
 Using these ten operators, you can accomplish many different tasks by
