@@ -156,3 +156,18 @@ NULL
   which(e1 %c% e2)
 }
 
+
+#' @rdname logicalwhich
+#' @export
+#' @examples
+#' ## define a variable
+#' sample_data <- c(1, 3, 9, 5, -9)
+#'
+#' sample_data %?e% "(-8, 1] | [2, 9)"
+#'
+#' ## clean up
+#' rm(sample_data)
+`%?e%`  <- function(e1, e2) {
+  which(e1 %e% e2)
+}
+

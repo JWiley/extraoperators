@@ -154,3 +154,19 @@ NULL
   all(e1 %c% e2)
 }
 
+
+#' @rdname logicalall
+#' @export
+#' @examples
+#' ## define a variable
+#' sample_data <- c(1, 3, 9, 5, -9)
+#'
+#' sample_data %ae% "(-8, 1] | [2, 9)"
+#' sample_data %ae% "(-Inf, Inf)"
+#'
+#' ## clean up
+#' rm(sample_data)
+`%ae%`  <- function(e1, e2) {
+  all(e1 %e% e2)
+}
+

@@ -154,3 +154,18 @@ NULL
 `%sc%`  <- function(e1, e2) {
   e1[e1 %c% e2]
 }
+
+
+#' @rdname subsetting
+#' @export
+#' @examples
+#' ## define a variable
+#' sample_data <- c(1, 3, 9, 5, -9)
+#'
+#' sample_data %se% "(-8, 1] | [2, 9)"
+#'
+#' ## clean up
+#' rm(sample_data)
+`%se%`  <- function(e1, e2) {
+  e1[e1 %e% e2]
+}

@@ -16,6 +16,7 @@
 \alias{\%s==\%}
 \alias{\%s!=\%}
 \alias{\%sc\%}
+\alias{\%se\%}
 \title{Several ways to subset based on logical range comparison helpers}
 \usage{
 e1 \%sgele\% e2
@@ -45,6 +46,8 @@ e1 \%s==\% e2
 e1 \%s!=\% e2
 
 e1 \%sc\% e2
+
+e1 \%se\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated and subset}
@@ -109,6 +112,13 @@ sample_data \%sc\% "( >= 1 & <= 10 ) | == -9 | is.na"
 ## equally we might be expecting NO missing values
 ## and want missing values to come up as FALSE
 sample_data \%sc\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+
+## clean up
+rm(sample_data)
+## define a variable
+sample_data <- c(1, 3, 9, 5, -9)
+
+sample_data \%se\% "(-8, 1] | [2, 9)"
 
 ## clean up
 rm(sample_data)

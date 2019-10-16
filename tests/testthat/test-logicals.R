@@ -47,8 +47,40 @@ test_that("logical comparisons work", {
     c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
 
   expect_equivalent(
+    c(1, 3, 9, 5, NA, -9) %c% "is.na | ( >= 1 & <= 10 ) | == -9",
+    c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
+
+  expect_equivalent(
     c(1, 3, 9, 5, NA, -9) %c% "(( >= 1 & <= 10 ) | == -9) & !is.na",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
+
+  expect_equivalent(
+    c(1, 3, 9, 5, NA, -9) %c% "is.na & (( >= 1 & <= 10 ) | == -9)",
+    c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
+
+  expect_equivalent(
+    .set1("(-Inf,30)", envir = environment()),
+    data.frame(Op1 = ">", Val1 = "-Inf", Con1 = "&",
+               Op2 = "<", Val2 = "30",
+               stringsAsFactors = FALSE))
+
+  expect_equivalent(
+    .set1("(-Inf,30)"),
+    data.frame(Op1 = ">", Val1 = "-Inf", Con1 = "&",
+               Op2 = "<", Val2 = "30",
+               stringsAsFactors = FALSE))
+
+
+  expect_equivalent(
+    .set1("&", envir = environment()),
+    data.frame(Op1 = "", Val1 = "", Con1 = "&",
+               Op2 = "", Val2 = "",
+               stringsAsFactors = FALSE))
+
+  expect_true(0 %e% "(-Inf, 0]")
+  expect_false(1 %e% "(-Inf, 0]")
+  expect_false(any(c(0, 9, 17) %e% "(-Inf, 0) | (5, 9) | (17, 40)"))
+  expect_false(any(c(0, 9, 17) %e% "(-Inf, Inf) & (5, 9)"))
 
 })
 
@@ -76,148 +108,14 @@ test_that("logical operator error checking works", {
   expect_error(1 %c% c(" > 3", "< 1"))
   expect_error(1 %c% 1)
   expect_error(1 %c% "")
+
+  expect_error(extraoperators:::.set1("(-Inf,x)", envir = environment()))
+  expect_error(extraoperators:::.set1("(-Inf,30", envir = environment()))
+  expect_error(extraoperators:::.set1("(x,30)", envir = environment()))
+  expect_error(extraoperators:::.set1("(-Inf,mtcars$mpg)", envir = environment()))
+  expect_error(extraoperators:::.set1("(mtcars$mpg, 50)", envir = environment()))
+
+  expect_error(0 %e% "(15, 1)")
+  expect_error(0 %e% "(15, NA)")
 })
 
-
-test_that("subsetting works", {
-  expect_equal(1:5 %sg% 3, c(4, 5))
-
-  expect_equal(1:5 %sge% 3, c(3, 4, 5))
-
-  expect_equal(1:5 %sl% 3, c(1, 2))
-
-  expect_equal(1:5 %sle% 3, c(1, 2, 3))
-
-  expect_equal(1:5 %sgl% c(2, 4), c(3))
-
-  expect_equal(1:5 %sgle% c(2, 4), c(3, 4))
-
-  expect_equal(1:5 %sgele% c(2, 4), c(2, 3, 4))
-
-  expect_equal(1:5 %sgel% c(2, 4), c(2, 3))
-
-  expect_equal(1:5 %sin% c(2, 4, 6), c(2, 4))
-
-  expect_equal(1:5 %s!in% c(2, 4, 6), c(1, 3, 5))
-  expect_equal(1:5 %snin% c(2, 4, 6), c(1, 3, 5))
-
-  expect_equal(1:5 %s==% 1:5, 1:5)
-  expect_equal(1:5 %s==% c(1:4, 1), 1:4)
-
-  expect_equal(1:5 %s!=% 1:5, integer(0))
-  expect_equal(1:5 %s!=% c(1:4, 1), 5)
-
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %sc% "( >= 1 & <= 10 ) | == -9",
-    c(1, 3, 9, 5, NA, -9))
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %sc% "( >= 1 & <= 10 ) | == -9 | is.na",
-    c(1, 3, 9, 5, NA, -9))
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %sc% "(( >= 1 & <= 10 ) | == -9) & !is.na",
-    c(1, 3, 9, 5, -9))
-})
-
-
-test_that("identifying indices works", {
-  expect_equal(5:1 %?g% 3, c(1, 2))
-
-  expect_equal(5:1 %?ge% 3, c(1, 2, 3))
-
-  expect_equal(5:1 %?l% 3, c(4, 5))
-
-  expect_equal(5:1 %?le% 3, c(3, 4, 5))
-
-  expect_equal(5:1 %?gl% c(2, 4), c(3))
-
-  expect_equal(5:1 %?gle% c(2, 4), c(2, 3))
-
-  expect_equal(5:1 %?gele% c(2, 4), c(2, 3, 4))
-
-  expect_equal(5:1 %?gel% c(2, 4), c(3, 4))
-
-  expect_equal(5:1 %?in% c(2, 4, 6), c(2, 4))
-
-  expect_equal(5:1 %?!in% c(2, 4, 6), c(1, 3, 5))
-
-  expect_equal(5:1 %?nin% c(2, 4, 6), c(1, 3, 5))
-
-  expect_equal(11:15 %?==% c(11, 1, 13, 15, 15), c(1, 3, 5))
-
-  expect_equal(11:15 %?!=% c(11, 1, 13, 15, 15), c(2, 4))
-
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %?c% "( >= 1 & <= 10 ) | == -9",
-    c(1, 2, 3, 4, 6))
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %?c% "( >= 1 & <= 10 ) | == -9 | is.na",
-    c(1, 2, 3, 4, 5, 6))
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %?c% "(( >= 1 & <= 10 ) | == -9) & !is.na",
-    c(1, 2, 3, 4, 6))
-
-})
-
-
-test_that("so-called all logical comparisons work", {
-  expect_false(5:1 %ag% 3)
-  expect_true(5:1 %ag% 0)
-
-  expect_false(5:1 %age% 3)
-  expect_true(5:1 %age% 1)
-
-  expect_false(5:1 %al% 3)
-  expect_true(5:1 %al% 6)
-
-  expect_false(5:1 %ale% 3)
-  expect_true(5:1 %ale% 5)
-
-  expect_false(5:1 %agl% c(2, 4))
-  expect_false(5:1 %agl% c(2, 6))
-  expect_false(5:1 %agl% c(0, 4))
-  expect_true(5:1 %agl% c(0, 6))
-
-  expect_false(5:1 %agle% c(2, 4))
-  expect_false(5:1 %agle% c(0, 4))
-  expect_false(5:1 %agle% c(1, 5))
-  expect_true(5:1 %agle% c(0, 5))
-
-  expect_false(5:1 %agele% c(2, 4))
-  expect_false(5:1 %agele% c(2, 5))
-  expect_false(5:1 %agele% c(1, 4))
-  expect_true(5:1 %agele% c(1, 5))
-
-  expect_false(5:1 %agel% c(2, 4))
-  expect_false(5:1 %agel% c(1, 4))
-  expect_false(5:1 %agel% c(2, 6))
-  expect_true(5:1 %agel% c(1, 6))
-
-  expect_false(5:1 %ain% c(2, 4, 6))
-  expect_true(5:1 %ain% 1:10)
-
-  expect_false(5:1 %a!in% c(2, 4, 6))
-  expect_false(5:1 %a!in% c(6:10, 1))
-  expect_true(5:1 %a!in% c(6:11))
-
-  expect_false(5:1 %anin% c(2, 4, 6))
-  expect_false(5:1 %anin% c(6:10, 1))
-  expect_true(5:1 %anin% c(6:11))
-
-  expect_true(1:5 %a==% 1:5)
-  expect_false(1:5 %a==% 5:1)
-
-  expect_false(1:5 %a!=% 1:5)
-  expect_false(1:5 %a!=% 5:1)
-  expect_true(1:5 %a!=% c(5, 4, 1, 3, 2))
-
-  expect_equal(
-    c(1, 3, 9, 5, NA, -9) %ac% "( >= 1 & <= 10 ) | == -9",
-    NA)
-  expect_true(
-    c(1, 3, 9, 5, NA, -9) %ac% "( >= 1 & <= 10 ) | == -9 | is.na")
-  expect_false(
-    c(1, 3, 9, 5, NA, -9) %ac% "(( >= 1 & <= 10 ) | == -9) & !is.na")
-
-})
-
-## https://en.wikipedia.org/wiki/Interval_(mathematics)

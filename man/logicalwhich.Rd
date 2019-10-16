@@ -16,6 +16,7 @@
 \alias{\%?==\%}
 \alias{\%?!=\%}
 \alias{\%?c\%}
+\alias{\%?e\%}
 \title{Several ways to return an index based on logical range comparison helpers}
 \usage{
 e1 \%?gele\% e2
@@ -45,6 +46,8 @@ e1 \%?==\% e2
 e1 \%?!=\% e2
 
 e1 \%?c\% e2
+
+e1 \%?e\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated and for which the indices will be returned}
@@ -110,6 +113,13 @@ sample_data \%?c\% "( >= 1 & <= 10 ) | == -9 | is.na"
 ## equally we might be expecting NO missing values
 ## and want missing values to come up as FALSE
 sample_data \%?c\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+
+## clean up
+rm(sample_data)
+## define a variable
+sample_data <- c(1, 3, 9, 5, -9)
+
+sample_data \%?e\% "(-8, 1] | [2, 9)"
 
 ## clean up
 rm(sample_data)

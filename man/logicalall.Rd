@@ -16,6 +16,7 @@
 \alias{\%a==\%}
 \alias{\%a!=\%}
 \alias{\%ac\%}
+\alias{\%ae\%}
 \title{Several ways to evaluate whether all values meet logical conditions including logical range comparison helpers}
 \usage{
 e1 \%agele\% e2
@@ -45,6 +46,8 @@ e1 \%a==\% e2
 e1 \%a!=\% e2
 
 e1 \%ac\% e2
+
+e1 \%ae\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated}
@@ -110,6 +113,14 @@ sample_data \%ac\% "( >= 1 & <= 10 ) | == -9 | is.na"
 ## equally we might be expecting NO missing values
 ## and want missing values to come up as FALSE
 sample_data \%ac\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
+
+## clean up
+rm(sample_data)
+## define a variable
+sample_data <- c(1, 3, 9, 5, -9)
+
+sample_data \%ae\% "(-8, 1] | [2, 9)"
+sample_data \%ae\% "(-Inf, Inf)"
 
 ## clean up
 rm(sample_data)

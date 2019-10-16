@@ -1,7 +1,7 @@
 Package: extraoperators
-Title: Extra binary relational and logical operators for R
+Title: Extra Binary Relational and Logical Operators
 Version: 0.1.0
-Date: 2019-10-09
+Date: 2019-10-15
 Authors@R: 
     person(given = "Joshua F.",
            family = "Wiley",
