@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extraoperators</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <h1>Logical Operators</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JWiley/extraoperators/blob/master/R/vignettes/logicals-vignette.Rmd"><code>R/vignettes/logicals-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JWiley/extraoperators/blob/master/vignettes/logicals-vignette.Rmd"><code>vignettes/logicals-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>logicals-vignette.Rmd</code></div>
 
     </div>
@@ -283,6 +283,22 @@
 <span id="cb15-14"><a href="#cb15-14"></a>age <span class="op">%?c%</span><span class="st"> "(&gt; 18 | == -9) &amp; !is.na"</span></span>
 <span id="cb15-15"><a href="#cb15-15"></a><span class="co">#&gt; [1] 1 2 3 4 7</span></span></code></pre></div>
 </div>
+<div id="interval-notation-operator" class="section level1">
+<h1 class="hasAnchor">
+<a href="#interval-notation-operator" class="anchor"></a>Interval Notation Operator</h1>
+<p>In math, interval notation often is used. For example, we might write: <span class="math inline">\(x \in (1, 5) \cup [6, \inft)\)</span> to indicate that <em>x</em> is between the intervals 1 to 5 (not including 1 or 5) or between 6 and positive infinity, including 6 but not positive infinity. The interval notation operator, <code><a href="../reference/grapes-e-grapes.html">%e%</a></code> let’s you use fairly similar language in <code>R</code>. “|” is the union operator and “&amp;” is the intersect operator. Variables are allowed but no functions as these cannot be parsed.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">300</span>) <span class="op">%e%</span><span class="st"> "(1, 5) | [6, Inf)"</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="co">## this is OK</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(mtcars<span class="op">$</span>mpg)</span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">300</span>) <span class="op">%e%</span><span class="st"> "(1, 5) | [6, x)"</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE FALSE</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co">## ## this would NOT be OK</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="co">## c(1, 2, 6, 300) %e% "(1, 5) | [6, max(mtcars$mpg))"</span></span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -296,6 +312,7 @@
       <li><a href="#subsetting">Subsetting</a></li>
       <li><a href="#all-or-none">All (or None)</a></li>
       <li><a href="#chaining">Chaining</a></li>
+      <li><a href="#interval-notation-operator">Interval Notation Operator</a></li>
       </ul>
 </div>
       </div>

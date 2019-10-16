@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Chain Operator — %c% • extraoperators</title>
+<title>Process Sets — .set1 • extraoperators</title>
 
 
 <!-- jquery -->
@@ -35,14 +35,9 @@
 
 
 
-<meta property="og:title" content="Chain Operator — %c%" />
-<meta property="og:description" content="This operator allows operators on the right hand side to be
-chained together. The intended use case is when you have a
-single object on which you want to perform several operations.
-For example, testing whether a variable is between 1 and 5 or
-equals special number 9, which might be used to indicate that
-someone responded to a question (i.e., its not missing per se)
-but that they preferred not to answer or did not know the answer." />
+<meta property="og:title" content="Process Sets — .set1" />
+<meta property="og:description" content="This is an internal function and not intended to be used directly.
+It processes small sets." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,74 +121,53 @@ but that they preferred not to answer or did not know the answer." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Chain Operator</h1>
+    <h1>Process Sets</h1>
     <small class="dont-index">Source: <a href='https://github.com/JWiley/extraoperators/blob/master/R/logicals.R'><code>R/logicals.R</code></a></small>
-    <div class="hidden name"><code>grapes-c-grapes.Rd</code></div>
+    <div class="hidden name"><code>dot-set1.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This operator allows operators on the right hand side to be
-chained together. The intended use case is when you have a
-single object on which you want to perform several operations.
-For example, testing whether a variable is between 1 and 5 or
-equals special number 9, which might be used to indicate that
-someone responded to a question (i.e., its not missing per se)
-but that they preferred not to answer or did not know the answer.</p>
+    <p>This is an internal function and not intended to be used directly.
+It processes small sets.</p>
     </div>
 
-    <pre class="usage"><span class='no'>e1</span> <span class='kw'>%c%</span> <span class='no'>e2</span></pre>
+    <pre class="usage"><span class='fu'>.set1</span>(<span class='no'>x</span>, <span class='no'>envir</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>e1</th>
-      <td><p>The values to be operated on, on the left hand side</p></td>
+      <th>x</th>
+      <td><p>A character string</p></td>
     </tr>
     <tr>
-      <th>e2</th>
-      <td><p>A character string (it MUST be quoted) containing all
-the operators and their values to apply to `e1`. Note that in
-this character string, operators can be chained together using either
-`|` or `&amp;`. Parentheses are also supported and work as expected. See
-examples for more information on how this function is used.</p></td>
+      <th>envir</th>
+      <td><p>An environment in which to evaluate values</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a logical vector</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>`<!-- %c%` has special facilities to handle the following: -->
-`is.na`, `!is.na`, `is.nan`, and `!is.nan`. These do not need
-any values supplied but they work as expected to add those logical
-assessments into the chain of operators.</p>
+    <p>A data frame with the processed set</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>## define a variable</span>
-<span class='no'>sample_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>9</span>, <span class='fl'>5</span>, <span class='fl'>NA</span>, -<span class='fl'>9</span>)
+<span class='co'>## ## below is an example that should generate an (informative) error</span>
+<span class='co'>## extraoperators:::.set1("(-Inf,x)", envir = environment())</span>
 
-<span class='co'>## suppose that we expect that values should fall in [1, 10]</span>
-<span class='co'>## unless they are special character, -9 used for unknown / refused</span>
-<span class='no'>sample_data</span> <span class='kw'>%c%</span> <span class='st'>"( &gt;= 1 &amp; &lt;= 10 ) | == -9"</span></div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE   NA TRUE</div><div class='input'>
-<span class='co'>## we might expect some missing values and be OK as long as</span>
-<span class='co'>## above conditions are met or values are missing</span>
-<span class='no'>sample_data</span> <span class='kw'>%c%</span> <span class='st'>"( &gt;= 1 &amp; &lt;= 10 ) | == -9 | is.na"</span></div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE</div><div class='input'>
-<span class='co'>## equally we might be expecting NO missing values</span>
-<span class='co'>## and want missing values to come up as FALSE</span>
-<span class='no'>sample_data</span> <span class='kw'>%c%</span> <span class='st'>"(( &gt;= 1 &amp; &lt;= 10 ) | == -9) &amp; !is.na"</span></div><div class='output co'>#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>9</span>, <span class='fl'>5</span>, <span class='fl'>NA</span>, -<span class='fl'>9</span>) <span class='kw'>%c%</span> <span class='st'>"is.na &amp; (( &gt;= 1 &amp; &lt;= 10 ) | == -9)"</span></div><div class='output co'>#&gt; [1] FALSE FALSE FALSE FALSE    NA FALSE</div><div class='input'>
+<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>mtcars</span>$<span class='no'>mpg</span>)
+<span class='kw pkg'>extraoperators</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/extraoperators/man/dot-set1.html'>.set1</a></span>(<span class='st'>"(-Inf,z)"</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())</div><div class='output co'>#&gt;   Op1 Val1 Con1 Op2 Val2
+#&gt; 1   &gt; -Inf    &amp;   &lt; 33.9</div><div class='input'>
+<span class='kw pkg'>extraoperators</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/extraoperators/man/dot-set1.html'>.set1</a></span>(<span class='st'>"(-Inf,30)"</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())</div><div class='output co'>#&gt;   Op1 Val1 Con1 Op2 Val2
+#&gt; 1   &gt; -Inf    &amp;   &lt;   30</div><div class='input'>
 <span class='co'>## clean up</span>
-<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>sample_data</span>)</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>z</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
