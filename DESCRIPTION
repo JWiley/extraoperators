@@ -1,7 +1,7 @@
 Package: extraoperators
 Title: Extra Binary Relational and Logical Operators
-Version: 0.1.0
-Date: 2019-10-15
+Version: 0.1.1
+Date: 2019-10-16
 Authors@R: 
     person(given = "Joshua F.",
            family = "Wiley",
@@ -14,7 +14,7 @@ Description: Speed up common tasks, particularly logical or
   relational comparisons and routine follow up tasks such as finding the
   indices and subsetting. For example, it implements
   a chaining operator, inspired by standard mathematics, where something like:
-  3 < x < 6 is standard, elegant and clear way to assert that
+  3 < x < 6 is a standard, elegant and clear way to assert that
   x is both greater than 3 and less than 6
   (see for example <https://en.wikipedia.org/wiki/Relational_operator>).
   extraoperators allows "x is greater than 3 and less than 6" to be

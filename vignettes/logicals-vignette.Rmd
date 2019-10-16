@@ -270,3 +270,28 @@ age %?c% "(> 18 | == -9) & !is.na"
 ```
 
 
+# Interval Notation Operator
+
+In math, interval notation often is used. For example, we might write:
+\(x \in (1, 5) \cup [6, \inft)\)
+to indicate that *x* is between the intervals 1 to 5 (not including 1
+or 5) or between 6 and positive infinity, including 6 but not positive
+infinity.
+The interval notation operator, `%e%` let's you use fairly similar
+language in `R`. "|" is the union operator and "&" is the intersect
+operator. Variables are allowed but no functions as these cannot be
+parsed.
+
+```{r}
+
+c(1, 2, 6, 300) %e% "(1, 5) | [6, Inf)"
+
+## this is OK
+x <- max(mtcars$mpg)
+c(1, 2, 6, 300) %e% "(1, 5) | [6, x)"
+
+## ## this would NOT be OK
+## c(1, 2, 6, 300) %e% "(1, 5) | [6, max(mtcars$mpg))"
+
+
+```

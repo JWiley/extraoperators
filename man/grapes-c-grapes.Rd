@@ -50,6 +50,8 @@ sample_data \%c\% "( >= 1 & <= 10 ) | == -9 | is.na"
 ## and want missing values to come up as FALSE
 sample_data \%c\% "(( >= 1 & <= 10 ) | == -9) & !is.na"
 
+c(1, 3, 9, 5, NA, -9) \%c\% "is.na & (( >= 1 & <= 10 ) | == -9)"
+
 ## clean up
 rm(sample_data)
 }

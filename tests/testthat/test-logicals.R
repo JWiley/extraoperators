@@ -51,11 +51,23 @@ test_that("logical comparisons work", {
     c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
 
   expect_equivalent(
+    c(1, 3, 9, 5, NA, -9) %c% "((is.na)) | ( >= 1 & <= 10 ) | == -9",
+    c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
+
+  expect_equivalent(
     c(1, 3, 9, 5, NA, -9) %c% "(( >= 1 & <= 10 ) | == -9) & !is.na",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
 
   expect_equivalent(
-    c(1, 3, 9, 5, NA, -9) %c% "is.na & (( >= 1 & <= 10 ) | == -9)",
+    c(1, 3, 9, 5, NA, -9) %c% "!is.na & (( >= 1 & <= 10 ) | == -9)",
+    c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
+
+  expect_equivalent(
+    c(1, 3, 9, 5, NA, -9) %c% "(!is.na) & (( >= 1 & <= 10 ) | == -9)",
+    c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
+
+  expect_equivalent(
+    c(1, 3, 9, 5, NA, -9) %c% "(((!is.na))) & (( >= 1 & <= 10 ) | == -9)",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
 
   expect_equivalent(

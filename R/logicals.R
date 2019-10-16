@@ -161,6 +161,8 @@ NULL
 #' ## and want missing values to come up as FALSE
 #' sample_data %c% "(( >= 1 & <= 10 ) | == -9) & !is.na"
 #'
+#' c(1, 3, 9, 5, NA, -9) %c% "is.na & (( >= 1 & <= 10 ) | == -9)"
+#'
 #' ## clean up
 #' rm(sample_data)
 `%c%`  <- function(e1, e2) {
@@ -185,7 +187,7 @@ NULL
     sprintf("__TEMP__AND__1 \\1(%s)", x),
     e2)
 
-  e2 <- gsub("(\\||\\|\\s*\\(|&|&\\s*\\()", sprintf("\\1 %s", x), e2)
+  e2 <- gsub("(\\||\\|\\s*\\(+|&|&\\s*\\(+)", sprintf("\\1 %s", x), e2)
 
   ## replace temp symbols back to R operators
   e2 <- gsub("__TEMP__OR__1",  "|", e2)
@@ -319,11 +321,11 @@ NULL
   e2 <- do.call(rbind, lapply(e2, .set1, envir = envir))
   e2$ConOnly <- nzchar(e2$Op1)
 
-  test <- e2[e2$ConOnly == TRUE, drop = FALSE]
+  test <- e2[e2$ConOnly == TRUE, , drop = FALSE]
   if (any(is.na(test$Val1) | is.nan(test$Val1) | is.na(test$Val2) | is.nan(test$Val2))) {
     stop("Values in sets cannot be missing")
   }
-  if (!isTRUE(all(test$Val1 <= test$Val2))) {
+  if (!isTRUE(all(as.numeric(test$Val1) <= as.numeric(test$Val2)))) {
     stop("Values in sets must be ordered from least to greatest")
   }
 
