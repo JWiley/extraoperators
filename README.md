@@ -8,8 +8,7 @@ Status](https://travis-ci.com/JWiley/extraoperators.svg?branch=master)](https://
 <!-- badges: end -->
 
 
-An `R` package with some simple operators to help speed up everyday
-tasks.
+An `R` package with operators to help speed up everyday tasks.
 
 Installation
 ------------
