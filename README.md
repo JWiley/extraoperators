@@ -5,6 +5,8 @@ extraoperators
 [![Build
 Status](https://travis-ci.com/JWiley/extraoperators.svg?branch=master)](https://travis-ci.com/JWiley/extraoperators)
 [![Codecov test coverage](https://codecov.io/gh/JWiley/extraoperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/extraoperators?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/extraoperators)](https://cran.r-project.org/package=extraoperators)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 
