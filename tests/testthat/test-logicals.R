@@ -35,55 +35,54 @@ test_that("logical comparisons work", {
   expect_true(1 %nin% c(3, 2))
   expect_false(1 %nin% c(1, 2))
 
-  expect_equivalent(c("a:b", "c:d") %flipIn% "b:a", c(TRUE, FALSE))
+  expect_equal(c("a:b", "c:d") %flipIn% "b:a", c("a:b" = TRUE, "c:d" = FALSE))
 
-
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "( >= 1 & <= 10 ) | == -9",
     c(TRUE, TRUE, TRUE, TRUE, NA, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "( >= 1 & <= 10 ) | == -9 | is.na",
     c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "is.na | ( >= 1 & <= 10 ) | == -9",
     c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "((is.na)) | ( >= 1 & <= 10 ) | == -9",
     c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "(( >= 1 & <= 10 ) | == -9) & !is.na",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "!is.na & (( >= 1 & <= 10 ) | == -9)",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "(!is.na) & (( >= 1 & <= 10 ) | == -9)",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     c(1, 3, 9, 5, NA, -9) %c% "(((!is.na))) & (( >= 1 & <= 10 ) | == -9)",
     c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE))
 
-  expect_equivalent(
+  expect_equal(
     .set1("(-Inf,30)", envir = environment()),
     data.frame(Op1 = ">", Val1 = "-Inf", Con1 = "&",
                Op2 = "<", Val2 = "30",
                stringsAsFactors = FALSE))
 
-  expect_equivalent(
+  expect_equal(
     .set1("(-Inf,30)"),
     data.frame(Op1 = ">", Val1 = "-Inf", Con1 = "&",
                Op2 = "<", Val2 = "30",
                stringsAsFactors = FALSE))
 
 
-  expect_equivalent(
+  expect_equal(
     .set1("&", envir = environment()),
     data.frame(Op1 = "", Val1 = "", Con1 = "&",
                Op2 = "", Val2 = "",
@@ -93,9 +92,7 @@ test_that("logical comparisons work", {
   expect_false(1 %e% "(-Inf, 0]")
   expect_false(any(c(0, 9, 17) %e% "(-Inf, 0) | (5, 9) | (17, 40)"))
   expect_false(any(c(0, 9, 17) %e% "(-Inf, Inf) & (5, 9)"))
-
 })
-
 
 test_that("logical operator error checking works", {
   expect_error(1 %gele% 1)
@@ -130,4 +127,3 @@ test_that("logical operator error checking works", {
   expect_error(0 %e% "(15, 1)")
   expect_error(0 %e% "(15, NA)")
 })
-

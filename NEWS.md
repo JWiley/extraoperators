@@ -1,3 +1,7 @@
+# extraoperators 0.1.2
+
+* Minor change to use testthat 3e.
+
 # extraoperators 0.1.1
 
 * BUGFIX: resolved a bug in `%c%` when multiple parentheses were

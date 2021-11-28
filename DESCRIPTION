@@ -1,6 +1,6 @@
 Package: extraoperators
 Title: Extra Binary Relational and Logical Operators
-Version: 0.1.1
+Version: 0.1.2
 Date: 2019-11-01
 Authors@R: 
     person(given = "Joshua F.",
@@ -8,7 +8,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jwiley.psych@gmail.com",
            comment = c(ORCID = "0000-0002-0271-6702"))	   
-URL: http://joshuawiley.com/extraoperators, https://github.com/JWiley/extraoperators
+URL: https://joshuawiley.com/extraoperators, https://github.com/JWiley/extraoperators
 BugReports: https://github.com/JWiley/extraoperators/issues	   
 Description: Speed up common tasks, particularly logical or
   relational comparisons and routine follow up tasks such as finding the
@@ -30,8 +30,9 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 
-    testthat (>= 2.1.0),
+    testthat (>= 3.0.0),
     covr,
     knitr,
     rmarkdown
+Config/testthat/edition: 3
 VignetteBuilder: knitr
