@@ -1,6 +1,6 @@
 Package: extraoperators
 Title: Extra Binary Relational and Logical Operators
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: 
     person(given = "Joshua F.",
            family = "Wiley",
