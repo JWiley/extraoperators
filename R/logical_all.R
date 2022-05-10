@@ -67,7 +67,9 @@ NULL
 #'
 #' 1:5 %age% 2
 #' 1:5 %age% 4
-`%age%` <- function(e1, e2) {all(e1 >= e2)}
+`%age%` <- function(e1, e2) {
+  all(e1 >= e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -75,7 +77,9 @@ NULL
 #'
 #' 1:5 %ag% 2
 #' 1:5 %ag% 4
-`%ag%` <- function(e1, e2) {all(e1 > e2)}
+`%ag%` <- function(e1, e2) {
+  all(e1 > e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -83,7 +87,9 @@ NULL
 #'
 #' 1:5 %ale% 2
 #' 1:5 %ale% 4
-`%ale%` <- function(e1, e2) {all(e1 <= e2)}
+`%ale%` <- function(e1, e2) {
+  all(e1 <= e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -91,7 +97,9 @@ NULL
 #'
 #' 1:5 %al% 2
 #' 1:5 %al% 4
-`%al%` <- function(e1, e2) {all(e1 < e2)}
+`%al%` <- function(e1, e2) {
+  all(e1 < e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -99,7 +107,9 @@ NULL
 #'
 #' 1:5 %ain% c(2, 99)
 #' c("jack", "jill", "john", "jane") %ain% c("jill", "jane", "bill")
-`%ain%` <- function(e1, e2) {all(e1 %in% e2)}
+`%ain%` <- function(e1, e2) {
+  all(e1 %in% e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -107,7 +117,9 @@ NULL
 #'
 #' 1:5 %a!in% c(2, 99)
 #' c("jack", "jill", "john", "jane") %a!in% c("jill", "jane", "bill")
-`%a!in%` <- function(e1, e2) {all(e1 %!in% e2)}
+`%a!in%` <- function(e1, e2) {
+  all(e1 %!in% e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -119,7 +131,9 @@ NULL
 #'
 #' 1:5 %a==% 1:5
 #' 1:5 %a==% 5:1
-`%a==%` <- function(e1, e2) {all(e1 == e2)}
+`%a==%` <- function(e1, e2) {
+  all(e1 == e2)
+}
 
 #' @rdname logicalall
 #' @export
@@ -128,7 +142,9 @@ NULL
 #' 1:5 %a!=% 1:5
 #' 1:5 %a!=% 5:1
 #' 1:5 %a!=% c(5, 4, 1, 3, 2)
-`%a!=%` <- function(e1, e2) {all(e1 != e2)}
+`%a!=%` <- function(e1, e2) {
+  all(e1 != e2)
+}
 
 #' @rdname logicalall
 #' @export

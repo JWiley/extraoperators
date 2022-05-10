@@ -195,7 +195,10 @@ NULL
 
   ## deal with is.na or is.nan if it STARTS the operators
   if (grepl("^\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)", e2)) {
-    e2 <- gsub("^\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)", sprintf("\\1(%s)", x), e2)
+    e2 <- gsub(
+      "^\\s*(\\(*\\s*is.na|\\(*\\s*!is.na|\\(*\\s*is.nan|\\(*\\s*!is.nan)",
+      sprintf("\\1(%s)", x),
+      e2)
   } else {
     e2 <- gsub("^(\\s*\\(*)", sprintf("\\1 %s", x), e2)
   }
@@ -318,6 +321,7 @@ NULL
     }
     return(x)
   }))
+
   e2 <- do.call(rbind, lapply(e2, .set1, envir = envir))
   e2$ConOnly <- nzchar(e2$Op1)
 
@@ -332,5 +336,6 @@ NULL
   text <- paste(ifelse(nzchar(e2$Op1),
                        paste("(", x, e2$Op1, e2$Val1, e2$Con1, x, e2$Op2, e2$Val2, ")"),
                        e2$Con1), collapse = " ")
+
   eval(parse(text = text), envir = envir)
 }
