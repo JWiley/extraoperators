@@ -3,7 +3,7 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   logicals-vignette: logicals-vignette.html
-last_built: 2022-05-10T10:39Z
+last_built: 2022-05-10T10:40Z
 urls:
   reference: https://joshuawiley.com/extraoperators/reference
   article: https://joshuawiley.com/extraoperators/articles
