@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jwiley.psych@gmail.com",
            comment = c(ORCID = "0000-0002-0271-6702"))	   
-URL: https://joshuawiley.com/extraoperators, https://github.com/JWiley/extraoperators
+URL: https://joshuawiley.com/extraoperators/, https://github.com/JWiley/extraoperators
 BugReports: https://github.com/JWiley/extraoperators/issues	   
 Description: Speed up common tasks, particularly logical or
   relational comparisons and routine follow up tasks such as finding the
@@ -26,7 +26,7 @@ Description: Speed up common tasks, particularly logical or
   values that are true.
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0),
     covr,

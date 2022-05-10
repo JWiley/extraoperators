@@ -4,7 +4,7 @@ extraoperators
 <!-- badges: start -->
 [![CRAN_status](https://www.r-pkg.org/badges/version/extraoperators)](https://cran.r-project.org/package=extraoperators)
 [![R-CMD-check](https://github.com/JWiley/extraoperators/workflows/R-CMD-check/badge.svg)](https://github.com/JWiley/extraoperators/actions)
-[![codecov](https://codecov.io/gh/JWiley/extraoperators/branch/master/graph/badge.svg?token=rVVdlwT3e5)](https://codecov.io/gh/JWiley/extraoperators)
+[![codecov](https://codecov.io/gh/JWiley/extraoperators/branch/main/graph/badge.svg?token=rVVdlwT3e5)](https://app.codecov.io/gh/JWiley/extraoperators)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
