@@ -2,13 +2,11 @@ extraoperators
 ==============
 
 <!-- badges: start -->
-[![Build
-Status](https://travis-ci.com/JWiley/extraoperators.svg?branch=master)](https://travis-ci.com/JWiley/extraoperators)
-[![Codecov test coverage](https://codecov.io/gh/JWiley/extraoperators/branch/master/graph/badge.svg)](https://codecov.io/gh/JWiley/extraoperators?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/extraoperators)](https://cran.r-project.org/package=extraoperators)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN_status](https://www.r-pkg.org/badges/version/extraoperators)](https://cran.r-project.org/package=extraoperators)
+[![R-CMD-check](https://github.com/JWiley/extraoperators/workflows/R-CMD-check/badge.svg)](https://github.com/JWiley/extraoperators/actions)
+[![codecov](https://codecov.io/gh/JWiley/extraoperators/branch/main/graph/badge.svg?token=VXf0Qo0PRY)](https://app.codecov.io/gh/JWiley/extraoperators)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
-
 
 An `R` package with operators to help speed up everyday tasks.
 
@@ -17,9 +15,15 @@ Installation
 
 To get the latest development version, use:
 
-```
+```r
 #install.packages("devtools")
 devtools::install_github("JWiley/extraoperators")
+```
+
+Otherwise to get from CRAN use:
+
+```r
+install.packages("extraoperators")
 ```
 
 Overview
