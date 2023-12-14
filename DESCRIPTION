@@ -1,6 +1,6 @@
 Package: extraoperators
 Title: Extra Binary Relational and Logical Operators
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: 
     person(given = "Joshua F.",
            family = "Wiley",
@@ -26,7 +26,7 @@ Description: Speed up common tasks, particularly logical or
   values that are true.
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0),
     covr,

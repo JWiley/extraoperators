@@ -17,6 +17,8 @@
 \alias{\%a!=\%}
 \alias{\%ac\%}
 \alias{\%ae\%}
+\alias{\%agrepl\%}
+\alias{\%a!grepl\%}
 \title{Several ways to evaluate whether all values meet logical conditions including logical range comparison helpers}
 \usage{
 e1 \%agele\% e2
@@ -48,6 +50,10 @@ e1 \%a!=\% e2
 e1 \%ac\% e2
 
 e1 \%ae\% e2
+
+e1 \%agrepl\% e2
+
+e1 \%a!grepl\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated}
@@ -124,4 +130,11 @@ sample_data \%ae\% "(-Inf, Inf)"
 
 ## clean up
 rm(sample_data)
+
+c("jack", "jane", "ajay") \%agrepl\% "ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%agrepl\% "^ja"
+
+c("jack", "jane", "ajay") \%a!grepl\% "ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%a!grepl\% "^ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%a!grepl\% "ja$"
 }

@@ -60,6 +60,13 @@ test_that("so-called all logical comparisons work", {
   expect_false(c(1, 3, 9, 5, -9) %ae% "(-8, 1] | [2, 9)")
   expect_true(c(1, 3, 9, 5, -9) %ae% "(-Inf, Inf)")
 
+  expect_true(c("jack", "jane", "ajay") %agrepl% "ja")
+  expect_false(c("jack", "jill", "john", "jane", "sill", "ajay") %agrepl% "^ja")
+  expect_false(c("jack", "jill", "john", "jane", "sill", "ajay") %agrepl% "ja$")
+
+  expect_false(c("jack", "jane", "ajay") %a!grepl% "ja")
+  expect_false(c("jack", "jill", "john", "jane", "sill", "ajay") %a!grepl% "^ja")
+  expect_true(c("jack", "jill", "john", "jane", "sill", "ajay") %a!grepl% "ja$")
 })
 
 ## https://en.wikipedia.org/wiki/Interval_(mathematics)

@@ -186,3 +186,23 @@ NULL
   all(e1 %e% e2)
 }
 
+#' @rdname logicalall
+#' @export
+#' @examples
+#'
+#' c("jack", "jane", "ajay") %agrepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %agrepl% "^ja"
+`%agrepl%` <- function(e1, e2) {
+  all(e1 %grepl% e2)
+}
+
+#' @rdname logicalall
+#' @export
+#' @examples
+#'
+#' c("jack", "jane", "ajay") %a!grepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %a!grepl% "^ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %a!grepl% "ja$"
+`%a!grepl%` <- function(e1, e2) {
+  all(e1 %!grepl% e2)
+}

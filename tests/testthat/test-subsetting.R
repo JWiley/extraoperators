@@ -40,5 +40,30 @@ test_that("subsetting works", {
     c(1, 3, 9, 5, -9) %se% "(-8, 1] | [2, 9)",
     c(1, 3, 5))
 
+  expect_equal(
+    c("jack", "jane", "ajay") %sgrepl% "ja",
+    c("jack", "jane", "ajay")
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %sgrepl% "^ja",
+    c("jack", "jane")
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %sgrepl% "ja$",
+    character(0)
+  )
+
+  expect_equal(
+    c("jack", "jane", "ajay") %s!grepl% "ja",
+    character(0)
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %s!grepl% "^ja",
+    c("jill", "john", "sill", "ajay")
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %s!grepl% "ja$",
+    c("jack", "jill", "john", "jane", "sill", "ajay")
+  )
 })
 

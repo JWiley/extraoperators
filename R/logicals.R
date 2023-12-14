@@ -230,7 +230,8 @@ NULL
 #' ## clean up
 #' rm(z)
 .set1 <- function(x, envir) {
-  if (identical(length(x), 1L) && identical(nchar(x), 1L)) { ## for connecting operators
+  ## for connecting operators
+  if (identical(length(x), 1L) && identical(nchar(x), 1L)) { 
     data.frame(Op1 = "",Val1 = "",
                Con1 = x,
                Op2 = "", Val2 = "",
@@ -338,4 +339,28 @@ NULL
                        e2$Con1), collapse = " ")
 
   eval(parse(text = text), envir = envir)
+}
+
+#' @rdname logicals
+#' @export
+#' @examples
+#'
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %grepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %grepl% "^ja"
+`%grepl%` <- function(e1, e2) {
+  stopifnot(identical(length(e2), 1L))
+  stopifnot(nchar(e2) > 0)
+  grepl(pattern = e2, x = e1)
+}
+
+#' @rdname logicals
+#' @export
+#' @examples
+#'
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %!grepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %!grepl% "^ja"
+`%!grepl%` <- function(e1, e2) {
+  stopifnot(identical(length(e2), 1L))
+  stopifnot(nchar(e2) > 0) 
+  !grepl(pattern = e2, x = e1)
 }

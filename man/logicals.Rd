@@ -13,6 +13,8 @@
 \alias{\%!in\%}
 \alias{\%nin\%}
 \alias{\%flipIn\%}
+\alias{\%grepl\%}
+\alias{\%!grepl\%}
 \title{Several logical range comparison helpers}
 \usage{
 e1 \%gele\% e2
@@ -36,6 +38,10 @@ e1 \%!in\% e2
 e1 \%nin\% e2
 
 e1 \%flipIn\% e2
+
+e1 \%grepl\% e2
+
+e1 \%!grepl\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated}
@@ -73,4 +79,10 @@ Several logical range comparison helpers
 
 1:5 \%!in\% c(2, 99)
 c("jack", "jill", "john", "jane") \%!in\% c("jill", "jane", "bill")
+
+c("jack", "jill", "john", "jane", "sill", "ajay") \%grepl\% "ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%grepl\% "^ja"
+
+c("jack", "jill", "john", "jane", "sill", "ajay") \%!grepl\% "ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%!grepl\% "^ja"
 }

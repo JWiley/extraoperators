@@ -39,5 +39,31 @@ test_that("identifying indices works", {
     c(1, 3, 9, 5, -9) %?e% "(-8, 1] | [2, 9)",
     c(1, 2, 4))
 
+  expect_equal(
+    c("jack", "jane", "ajay") %?grepl% "ja",
+    c(1, 2, 3)
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %?grepl% "^ja",
+    c(1, 4)
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %?grepl% "ja$",
+    integer(0)
+  )
+
+  expect_equal(
+    c("jack", "jane", "ajay") %?!grepl% "ja",
+    integer(0)
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %?!grepl% "^ja",
+    c(2, 3, 5, 6)
+  )
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %?!grepl% "ja$",
+    c(1, 2, 3, 4, 5, 6)
+  )
+
 })
 

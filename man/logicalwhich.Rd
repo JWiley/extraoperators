@@ -17,6 +17,8 @@
 \alias{\%?!=\%}
 \alias{\%?c\%}
 \alias{\%?e\%}
+\alias{\%?grepl\%}
+\alias{\%?!grepl\%}
 \title{Several ways to return an index based on logical range comparison helpers}
 \usage{
 e1 \%?gele\% e2
@@ -48,6 +50,10 @@ e1 \%?!=\% e2
 e1 \%?c\% e2
 
 e1 \%?e\% e2
+
+e1 \%?grepl\% e2
+
+e1 \%?!grepl\% e2
 }
 \arguments{
 \item{e1}{A number of vector to be evaluated and for which the indices will be returned}
@@ -123,4 +129,10 @@ sample_data \%?e\% "(-8, 1] | [2, 9)"
 
 ## clean up
 rm(sample_data)
+
+c("jack", "jill", "john", "jane", "sill", "ajay") \%?grepl\% "ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%?grepl\% "^ja"
+
+c("jack", "jill", "john", "jane", "sill", "ajay") \%?!grepl\% "ja"
+c("jack", "jill", "john", "jane", "sill", "ajay") \%?!grepl\% "^ja"
 }

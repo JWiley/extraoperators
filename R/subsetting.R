@@ -169,3 +169,19 @@ NULL
 `%se%`  <- function(e1, e2) {
   e1[e1 %e% e2]
 }
+
+#' @rdname subsetting
+#' @export
+#' @examples
+#'
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %sgrepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %sgrepl% "^ja"
+`%sgrepl%` <- function(e1, e2) {e1[e1 %grepl% e2]}
+
+#' @rdname subsetting
+#' @export
+#' @examples
+#'
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %s!grepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %s!grepl% "^ja"
+`%s!grepl%` <- function(e1, e2) {e1[e1 %!grepl% e2]}

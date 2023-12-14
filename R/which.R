@@ -171,3 +171,18 @@ NULL
   which(e1 %e% e2)
 }
 
+#' @rdname logicalwhich
+#' @export
+#' @examples
+#'
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %?grepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %?grepl% "^ja"
+`%?grepl%` <- function(e1, e2) {which(e1 %grepl% e2)}
+
+#' @rdname logicalwhich
+#' @export
+#' @examples
+#'
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %?!grepl% "ja"
+#' c("jack", "jill", "john", "jane", "sill", "ajay") %?!grepl% "^ja"
+`%?!grepl%` <- function(e1, e2) {which(e1 %!grepl% e2)}

@@ -295,3 +295,26 @@ c(1, 2, 6, 300) %e% "(1, 5) | [6, x)"
 
 
 ```
+
+# Regular Expressions
+
+Sometimes you want to pattern match. For example, you might want to
+find all variable names that match a certain pattern. The `%grepl% operator
+can help here, built off `R`'s `grepl` function.
+  
+```{r}
+## sample dataset
+data <- data.frame(
+  ID = c(1, 2, 3),
+  cesd_1 = c(4, 5, 6),
+  cesd_2 = c(7, 8, 9),
+  cesd_total = c(11, 13, 15)
+)
+
+## find all variables that start with "cesd"
+names(data)[grepl("^cesd", names(data))]
+
+## and the less typing version using operators
+names(data) %sgrepl% "^cesd"
+
+```

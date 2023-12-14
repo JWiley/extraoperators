@@ -55,9 +55,10 @@ evaluation.
 | %!in% OR %nin% | Not in                                       | %?!in% OR %?nin% | %s!in% OR %snin% | %a!in% OR %anin% |
 | %c%            | Chain operations on the RHS together         | %?c%             | %sc%             | %ac%             |
 | %e%            | Set operator, to use set notation            | %?e%             | %se%             | %ae%             |
+| %grepl%        | does text match a regular expression         | %?grepl%         | %sgrepl%         | %agrepl%         |
+| %!grepl%       | does text NOT match a regular expression     | %?!grepl%        | %s!grepl%        | %a!grepl%        |
 
-
-Using these ten operators, you can accomplish many different tasks by
+Using these operators, you can accomplish many different tasks by
 just remembering the additional prefixes: `?` for `which()`, `a` for
 `all()` and `s` for `subset()`. While simple, this can save quite a
 few keystrokes and make various logical comparisons less convoluted.

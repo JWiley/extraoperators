@@ -126,4 +126,32 @@ test_that("logical operator error checking works", {
 
   expect_error(0 %e% "(15, 1)")
   expect_error(0 %e% "(15, NA)")
+  expect_error(0 %e% "(15, 1]")
+  expect_error(0 %e% "[15, 1)")
+  expect_error(0 %e% "(15, 1) | (15, 1)")
+  expect_error(0 %e% "(15, 1) & (15, 1)")
+
+  expect_error("text" %grepl% "")
+  expect_error("text" %grepl% c("a", "b"))
+  expect_equal(
+    c("jack", "jane", "ajay") %grepl% "ja",
+    c(TRUE, TRUE, TRUE))
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %grepl% "^ja",
+    c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE))
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %grepl% "ja$",
+    c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE))
+
+  expect_error("text" %!grepl% "")
+  expect_error("text" %!grepl% c("a", "b"))
+  expect_equal(
+    c("jack", "jane", "ajay") %!grepl% "ja",
+    c(FALSE, FALSE, FALSE))
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %!grepl% "^ja",
+    c(FALSE, TRUE, TRUE, FALSE, TRUE, TRUE))
+  expect_equal(
+    c("jack", "jill", "john", "jane", "sill", "ajay") %!grepl% "ja$",
+    c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
 })

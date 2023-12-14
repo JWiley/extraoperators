@@ -1,3 +1,7 @@
+# extraoperators 0.3.0
+* introduced new `%grepl%` and related operators for regular expression 
+  based matching, indexing, subsetting
+
 # extraoperators 0.2.0
 
 * Minor change to use testthat 3e.
