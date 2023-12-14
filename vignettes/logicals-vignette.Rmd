@@ -314,7 +314,61 @@ data <- data.frame(
 ## find all variables that start with "cesd"
 names(data)[grepl("^cesd", names(data))]
 
-## and the less typing version using operators
+## or equivalently using grep() with right options
+grep("^cesd", names(data), value = TRUE)
+
+## here is the operator version
 names(data) %sgrepl% "^cesd"
 
+## the operator opens up all standard variations
+names(data) %?grepl% "^cesd" ## indices
+names(data) %s!grepl% "^cesd" ## subset names not in pattern
+names(data) %agrepl% "^cesd" ## do all match the pattern?
+
+```
+
+An example use case in practice might be to find all variables 
+that are items in a scale and then calculate the scale score.
+
+```{r}
+set.seed(123) # Set seed for reproducibility
+data <- data.frame(matrix(sample(0:4, 100, replace = TRUE), ncol = 10))
+names(data) <- paste0("cesd_", 1:10)
+data <- cbind(ID = 1:10, data)
+
+## find all variables that start with "cesd" and end with a number
+## use these to sum all the items for the scale score
+data$cesd_total <- rowSums(data[, names(data) %sgrepl% "^cesd.*[0-9]$"])
+
+summary(data$cesd_total)
+``` 
+
+Another example is you load a larger dataset from someone and 
+want to check whether there are any variable names including spaces.
+You want to check that any space, in regular expression captured by 
+"\\s", is not contained in any variable name. That is all are not in space.
+
+```{r}
+names(mtcars) %a!grepl% "\\s"
+```
+
+This returns `TRUE` indicating no variable names have a space in them.
+
+Here is an example that fails. At least one variable name has a space.
+We follow it up by finding out *which* variable(s). This could be fed back 
+to the data owners to change, if desired. Lastly, although these are written 
+as separate codes, when used interactively, one might start with the 
+test and if it fails change the `a!` to `s` to find the variables.
+The intention being just to slightly ease and speed up the process.
+
+```{r}
+data <- data.frame(
+  a = 1:4,
+  `b c` = 5:8, check.names = FALSE
+)
+
+names(data) %a!grepl% "\\s" # this fails
+
+# which variables have spaces?
+names(data) %sgrepl% "\\s" 
 ```
