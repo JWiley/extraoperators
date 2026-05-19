@@ -3,9 +3,10 @@
 #'
 #' @title Several ways to evaluate whether all values meet logical conditions including logical range comparison helpers
 #'
-#' @param e1 A number of vector to be evaluated
-#' @param e2 A vector of one or two numbers used to denote the
-#'   limits for logical comparison.
+#' @param e1 A vector to be evaluated.
+#' @param e2 The right hand side value passed to the underlying logical
+#'   operator. See \code{\link{logicals}}, \code{\link{\%c\%}}, and
+#'   \code{\link{\%e\%}} for operator-specific requirements.
 #'
 #' @return A logical value whether all \code{e1} meet the logical conditions.
 NULL
@@ -17,10 +18,7 @@ NULL
 #' 1:5 %agele% c(2, 4)
 #' 1:5 %agele% c(4, 2) # order does not matter uses min / max
 `%agele%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  all(e1 >= min(e2) & e1 <= max(e2))
+  all(e1 %gele% e2)
 }
 
 #' @rdname logicalall
@@ -30,10 +28,7 @@ NULL
 #' 1:5 %agel% c(2, 4)
 #' 1:5 %agel% c(4, 2) # order does not matter uses min / max
 `%agel%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  all(e1 >= min(e2) & e1 < max(e2))
+  all(e1 %gel% e2)
 }
 
 #' @rdname logicalall
@@ -43,10 +38,7 @@ NULL
 #' 1:5 %agle% c(2, 4)
 #' 1:5 %agle% c(4, 2) # order does not matter uses min / max
 `%agle%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  all(e1 > min(e2) & e1 <= max(e2))
+  all(e1 %gle% e2)
 }
 
 #' @rdname logicalall
@@ -56,9 +48,7 @@ NULL
 #' 1:5 %agl% c(2, 4)
 #' 1:5 %agl% c(4, 2) # order does not matter uses min / max
 `%agl%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-  all(e1 > min(e2) & e1 < max(e2))
+  all(e1 %gl% e2)
 }
 
 #' @rdname logicalall
@@ -68,7 +58,7 @@ NULL
 #' 1:5 %age% 2
 #' 1:5 %age% 4
 `%age%` <- function(e1, e2) {
-  all(e1 >= e2)
+  all(e1 %ge% e2)
 }
 
 #' @rdname logicalall
@@ -78,7 +68,7 @@ NULL
 #' 1:5 %ag% 2
 #' 1:5 %ag% 4
 `%ag%` <- function(e1, e2) {
-  all(e1 > e2)
+  all(e1 %g% e2)
 }
 
 #' @rdname logicalall
@@ -88,7 +78,7 @@ NULL
 #' 1:5 %ale% 2
 #' 1:5 %ale% 4
 `%ale%` <- function(e1, e2) {
-  all(e1 <= e2)
+  all(e1 %le% e2)
 }
 
 #' @rdname logicalall
@@ -98,7 +88,7 @@ NULL
 #' 1:5 %al% 2
 #' 1:5 %al% 4
 `%al%` <- function(e1, e2) {
-  all(e1 < e2)
+  all(e1 %l% e2)
 }
 
 #' @rdname logicalall

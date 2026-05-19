@@ -3,9 +3,10 @@
 #'
 #' @title Several ways to return an index based on logical range comparison helpers
 #'
-#' @param e1 A number of vector to be evaluated and for which the indices will be returned
-#' @param e2 A vector of one or two numbers used to denote the
-#'   limits for logical comparison.
+#' @param e1 A vector to be evaluated and for which the indices will be returned.
+#' @param e2 The right hand side value passed to the underlying logical
+#'   operator. See \code{\link{logicals}}, \code{\link{\%c\%}}, and
+#'   \code{\link{\%e\%}} for operator-specific requirements.
 #'
 #' @return A vector of the indices identifying which values of \code{e1} meet the logical conditions.
 NULL
@@ -17,10 +18,7 @@ NULL
 #' 1:5 %?gele% c(2, 4)
 #' 1:5 %?gele% c(4, 2) # order does not matter uses min / max
 `%?gele%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  which(e1 >= min(e2) & e1 <= max(e2))
+  which(e1 %gele% e2)
 }
 
 #' @rdname logicalwhich
@@ -30,10 +28,7 @@ NULL
 #' 1:5 %?gel% c(2, 4)
 #' 1:5 %?gel% c(4, 2) # order does not matter uses min / max
 `%?gel%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  which(e1 >= min(e2) & e1 < max(e2))
+  which(e1 %gel% e2)
 }
 
 #' @rdname logicalwhich
@@ -43,10 +38,7 @@ NULL
 #' 1:5 %?gle% c(2, 4)
 #' 1:5 %?gle% c(4, 2) # order does not matter uses min / max
 `%?gle%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  which(e1 > min(e2) & e1 <= max(e2))
+  which(e1 %gle% e2)
 }
 
 #' @rdname logicalwhich
@@ -56,9 +48,7 @@ NULL
 #' 1:5 %?gl% c(2, 4)
 #' 1:5 %?gl% c(4, 2) # order does not matter uses min / max
 `%?gl%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-  which(e1 > min(e2) & e1 < max(e2))
+  which(e1 %gl% e2)
 }
 
 #' @rdname logicalwhich
@@ -67,7 +57,7 @@ NULL
 #'
 #' 1:5 %?ge% 2
 #' 1:5 %?ge% 4
-`%?ge%` <- function(e1, e2) {which(e1 >= e2)}
+`%?ge%` <- function(e1, e2) {which(e1 %ge% e2)}
 
 #' @rdname logicalwhich
 #' @export
@@ -75,7 +65,7 @@ NULL
 #'
 #' 1:5 %?g% 2
 #' 1:5 %?g% 4
-`%?g%` <- function(e1, e2) {which(e1 > e2)}
+`%?g%` <- function(e1, e2) {which(e1 %g% e2)}
 
 #' @rdname logicalwhich
 #' @export
@@ -83,7 +73,7 @@ NULL
 #'
 #' 1:5 %?le% 2
 #' 1:5 %?le% 4
-`%?le%` <- function(e1, e2) {which(e1 <= e2)}
+`%?le%` <- function(e1, e2) {which(e1 %le% e2)}
 
 #' @rdname logicalwhich
 #' @export
@@ -91,7 +81,7 @@ NULL
 #'
 #' 1:5 %?l% 2
 #' 1:5 %?l% 4
-`%?l%` <- function(e1, e2) {which(e1 < e2)}
+`%?l%` <- function(e1, e2) {which(e1 %l% e2)}
 
 #' @rdname logicalwhich
 #' @export
@@ -114,7 +104,7 @@ NULL
 #' @examples
 #'
 #' 1:5 %?nin% c(2, 99)
-#' c("jack", "jill", "john", "jane") %snin% c("jill", "jane", "bill")
+#' c("jack", "jill", "john", "jane") %?nin% c("jill", "jane", "bill")
 `%?nin%` <- function(e1, e2) {which(e1 %!in% e2)}
 
 

@@ -15,3 +15,7 @@ LICENSE
 ^\.github$
 ^docs$
 internal.md
+^\.agents$
+^\.codex$
+^.*\.Rcheck$
+^extraoperators_[0-9.]+\.tar\.gz$

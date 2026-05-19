@@ -9,9 +9,10 @@ e1 \%e\% e2
 \arguments{
 \item{e1}{The values to be operated on, on the left hand side}
 
-\item{e2}{A character string containing set notation style
-defined ranges on the real number line. Separate sets with the
-\dQuote{&} or \dQuote{|} operator for AND or OR.}
+\item{e2}{One non-empty character string containing set notation style
+ranges on the real number line. Separate sets with the \dQuote{&} or
+\dQuote{|} operator for AND or OR. Connectors must appear between complete
+sets, not at the start or end of the string, and cannot be doubled.}
 }
 \value{
 a logical vector

@@ -44,10 +44,15 @@ e1 \%grepl\% e2
 e1 \%!grepl\% e2
 }
 \arguments{
-\item{e1}{A number of vector to be evaluated}
+\item{e1}{A vector to be evaluated.}
 
-\item{e2}{A vector of one or two numbers used to denote the
-limits for logical comparison.}
+\item{e2}{The right hand side value for the operator. For range operators,
+use a length-two vector without missing values. For \code{\%!in\%}, use a
+non-empty lookup vector. For \code{\%c\%}, use one non-empty character
+string containing chained comparisons joined by \code{&} or \code{|}. For
+\code{\%e\%}, use one non-empty character string containing interval
+notation joined by \code{&} or \code{|}. For \code{\%grepl\%}, use one
+non-empty regular expression.}
 }
 \value{
 A logical vector of the same length as \code{e1}.

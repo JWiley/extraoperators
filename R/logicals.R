@@ -3,12 +3,68 @@
 #'
 #' @title Several logical range comparison helpers
 #'
-#' @param e1 A number of vector to be evaluated
-#' @param e2 A vector of one or two numbers used to denote the
-#'   limits for logical comparison.
+#' @param e1 A vector to be evaluated.
+#' @param e2 The right hand side value for the operator. For range operators,
+#'   use a length-two vector without missing values. For \code{\%!in\%}, use a
+#'   non-empty lookup vector. For \code{\%c\%}, use one non-empty character
+#'   string containing chained comparisons joined by \code{&} or \code{|}. For
+#'   \code{\%e\%}, use one non-empty character string containing interval
+#'   notation joined by \code{&} or \code{|}. For \code{\%grepl\%}, use one
+#'   non-empty regular expression.
 #'
 #' @return A logical vector of the same length as \code{e1}.
 NULL
+
+.check_range_e2 <- function(e2, operator) {
+  if (!identical(length(e2), 2L)) {
+    stop(sprintf("%s requires e2 to have length 2.", operator), call. = FALSE)
+  }
+  if (anyNA(e2)) {
+    stop(sprintf("%s requires e2 to have no missing values.", operator), call. = FALSE)
+  }
+}
+
+.check_non_empty_e2 <- function(e2, operator) {
+  if (!length(e2)) {
+    stop(sprintf("%s requires e2 to contain at least one value.", operator), call. = FALSE)
+  }
+}
+
+.check_scalar_character_e2 <- function(e2, operator, description) {
+  if (!is.character(e2)) {
+    stop(sprintf("%s requires e2 to be a character string.", operator), call. = FALSE)
+  }
+  if (!identical(length(e2), 1L)) {
+    stop(sprintf("%s requires e2 to be exactly one character string.", operator), call. = FALSE)
+  }
+  if (is.na(e2) || !nzchar(trimws(e2))) {
+    stop(sprintf("%s requires e2 to be a non-empty %s.", operator, description), call. = FALSE)
+  }
+}
+
+.check_connectors <- function(e2, operator) {
+  compact <- gsub("\\s", "", e2)
+  if (grepl("^[|&]|[|&]$", compact)) {
+    stop(sprintf("%s requires e2 not to start or end with '&' or '|'.", operator), call. = FALSE)
+  }
+  if (grepl("[|&]{2,}", compact)) {
+    stop(sprintf("%s requires e2 not to contain adjacent '&' or '|' operators.", operator), call. = FALSE)
+  }
+}
+
+.check_chain_e2 <- function(e2, operator) {
+  .check_scalar_character_e2(e2, operator, "chain expression")
+  .check_connectors(e2, operator)
+}
+
+.check_set_e2 <- function(e2, operator) {
+  .check_scalar_character_e2(e2, operator, "set notation expression")
+  .check_connectors(e2, operator)
+}
+
+.check_pattern_e2 <- function(e2, operator) {
+  .check_scalar_character_e2(e2, operator, "regular expression")
+}
 
 #' @rdname logicals
 #' @export
@@ -17,8 +73,7 @@ NULL
 #' 1:5 %gele% c(2, 4)
 #' 1:5 %gele% c(4, 2) # order does not matter uses min / max
 `%gele%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
+  .check_range_e2(e2, "%gele%")
 
   e1 >= min(e2) & e1 <= max(e2)
 }
@@ -30,8 +85,7 @@ NULL
 #' 1:5 %gel% c(2, 4)
 #' 1:5 %gel% c(4, 2) # order does not matter uses min / max
 `%gel%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
+  .check_range_e2(e2, "%gel%")
 
   e1 >= min(e2) & e1 < max(e2)
 }
@@ -43,8 +97,7 @@ NULL
 #' 1:5 %gle% c(2, 4)
 #' 1:5 %gle% c(4, 2) # order does not matter uses min / max
 `%gle%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
+  .check_range_e2(e2, "%gle%")
 
   e1 > min(e2) & e1 <= max(e2)
 }
@@ -56,8 +109,7 @@ NULL
 #' 1:5 %gl% c(2, 4)
 #' 1:5 %gl% c(4, 2) # order does not matter uses min / max
 `%gl%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
+  .check_range_e2(e2, "%gl%")
 
   e1 > min(e2) & e1 < max(e2)
 }
@@ -97,7 +149,7 @@ NULL
 #' 1:5 %!in% c(2, 99)
 #' c("jack", "jill", "john", "jane") %!in% c("jill", "jane", "bill")
 `%!in%` <- function(e1, e2) {
-  stopifnot(length(e2) > 0)
+  .check_non_empty_e2(e2, "%!in%")
   !(e1 %in% e2)
 }
 
@@ -136,11 +188,12 @@ NULL
 #' assessments into the chain of operators.
 #'
 #' @param e1 The values to be operated on, on the left hand side
-#' @param e2 A character string (it MUST be quoted) containing all
-#' the operators and their values to apply to `e1`. Note that in
-#' this character string, operators can be chained together using either
-#' `|` or `&`. Parentheses are also supported and work as expected. See
-#' examples for more information on how this function is used.
+#' @param e2 One non-empty character string (it MUST be quoted) containing
+#' the operators and values to apply to `e1`. Operators can be chained together
+#' using either `|` or `&`; these connectors must appear between complete
+#' conditions, not at the start or end of the string, and cannot be doubled.
+#' Parentheses are also supported and work as expected. See examples for more
+#' information on how this function is used.
 #' @keywords operators logical
 #' @return a logical vector
 #' @export
@@ -166,10 +219,7 @@ NULL
 #' ## clean up
 #' rm(sample_data)
 `%c%`  <- function(e1, e2) {
-  ## tests that input is correct
-  stopifnot(is.character(e2))
-  stopifnot(identical(length(e2), 1L))
-  stopifnot(nzchar(e2))
+  .check_chain_e2(e2, "%c%")
 
   ## copy the call, used to find the
   ## symbol for e1
@@ -284,9 +334,10 @@ NULL
 #' This operator allows use of set notation style definitions
 #'
 #' @param e1 The values to be operated on, on the left hand side
-#' @param e2 A character string containing set notation style
-#' defined ranges on the real number line. Separate sets with the
-#' \dQuote{&} or \dQuote{|} operator for AND or OR.
+#' @param e2 One non-empty character string containing set notation style
+#' ranges on the real number line. Separate sets with the \dQuote{&} or
+#' \dQuote{|} operator for AND or OR. Connectors must appear between complete
+#' sets, not at the start or end of the string, and cannot be doubled.
 #' @keywords operators logical
 #' @return a logical vector
 #' @export
@@ -303,6 +354,8 @@ NULL
 #' ## clean up
 #' rm(z)
 `%e%` <- function(e1, e2) {
+  .check_set_e2(e2, "%e%")
+
   call <- match.call()
   x <- as.character(call[2])
 
@@ -348,8 +401,7 @@ NULL
 #' c("jack", "jill", "john", "jane", "sill", "ajay") %grepl% "ja"
 #' c("jack", "jill", "john", "jane", "sill", "ajay") %grepl% "^ja"
 `%grepl%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 1L))
-  stopifnot(nchar(e2) > 0)
+  .check_pattern_e2(e2, "%grepl%")
   grepl(pattern = e2, x = e1)
 }
 
@@ -360,7 +412,6 @@ NULL
 #' c("jack", "jill", "john", "jane", "sill", "ajay") %!grepl% "ja"
 #' c("jack", "jill", "john", "jane", "sill", "ajay") %!grepl% "^ja"
 `%!grepl%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 1L))
-  stopifnot(nchar(e2) > 0) 
+  .check_pattern_e2(e2, "%!grepl%")
   !grepl(pattern = e2, x = e1)
 }

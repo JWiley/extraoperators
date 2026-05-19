@@ -56,10 +56,11 @@ e1 \%agrepl\% e2
 e1 \%a!grepl\% e2
 }
 \arguments{
-\item{e1}{A number of vector to be evaluated}
+\item{e1}{A vector to be evaluated.}
 
-\item{e2}{A vector of one or two numbers used to denote the
-limits for logical comparison.}
+\item{e2}{The right hand side value passed to the underlying logical
+operator. See \code{\link{logicals}}, \code{\link{\%c\%}}, and
+\code{\link{\%e\%}} for operator-specific requirements.}
 }
 \value{
 A logical value whether all \code{e1} meet the logical conditions.

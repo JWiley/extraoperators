@@ -1,12 +1,14 @@
 Package: extraoperators
 Title: Extra Binary Relational and Logical Operators
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: 
     person(given = "Joshua F.",
            family = "Wiley",
            role = c("aut", "cre"),
            email = "jwiley.psych@gmail.com",
            comment = c(ORCID = "0000-0002-0271-6702"))	   
+Author: Joshua F. Wiley [aut, cre] (<https://orcid.org/0000-0002-0271-6702>)
+Maintainer: Joshua F. Wiley <jwiley.psych@gmail.com>
 URL: https://joshuawiley.com/extraoperators/, https://github.com/JWiley/extraoperators
 BugReports: https://github.com/JWiley/extraoperators/issues	   
 Description: Speed up common tasks, particularly logical or
@@ -21,12 +23,11 @@ Description: Speed up common tasks, particularly logical or
   The %e% operator allows something like set-builder notation 
   (see for example <https://en.wikipedia.org/wiki/Set-builder_notation>) 
   to be used on the right hand side.
-  All operators have built in prefixes defined for all, subset, and which
+  Operators have built in prefixes defined for all, any, subset, and which
   to reduce the amount of code needed for common tasks, such as return those
   values that are true.
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0),
     covr,
@@ -34,3 +35,4 @@ Suggests:
     rmarkdown
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.0.0

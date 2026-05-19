@@ -3,9 +3,10 @@
 #'
 #' @title Several ways to subset based on logical range comparison helpers
 #'
-#' @param e1 A number of vector to be evaluated and subset
-#' @param e2 A vector of one or two numbers used to denote the
-#'   limits for logical comparison.
+#' @param e1 A vector to be evaluated and subset.
+#' @param e2 The right hand side value passed to the underlying logical
+#'   operator. See \code{\link{logicals}}, \code{\link{\%c\%}}, and
+#'   \code{\link{\%e\%}} for operator-specific requirements.
 #'
 #' @return A subset of \code{e1} that meets the logical conditions.
 NULL
@@ -17,10 +18,7 @@ NULL
 #' 1:5 %sgele% c(2, 4)
 #' 1:5 %sgele% c(4, 2) # order does not matter uses min / max
 `%sgele%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  e1[e1 >= min(e2) & e1 <= max(e2)]
+  e1[e1 %gele% e2]
 }
 
 #' @rdname subsetting
@@ -30,10 +28,7 @@ NULL
 #' 1:5 %sgel% c(2, 4)
 #' 1:5 %sgel% c(4, 2) # order does not matter uses min / max
 `%sgel%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  e1[e1 >= min(e2) & e1 < max(e2)]
+  e1[e1 %gel% e2]
 }
 
 #' @rdname subsetting
@@ -43,10 +38,7 @@ NULL
 #' 1:5 %sgle% c(2, 4)
 #' 1:5 %sgle% c(4, 2) # order does not matter uses min / max
 `%sgle%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-
-  e1[e1 > min(e2) & e1 <= max(e2)]
+  e1[e1 %gle% e2]
 }
 
 #' @rdname subsetting
@@ -56,9 +48,7 @@ NULL
 #' 1:5 %sgl% c(2, 4)
 #' 1:5 %sgl% c(4, 2) # order does not matter uses min / max
 `%sgl%` <- function(e1, e2) {
-  stopifnot(identical(length(e2), 2L))
-  stopifnot(!anyNA(e2))
-  e1[e1 > min(e2) & e1 < max(e2)]
+  e1[e1 %gl% e2]
 }
 
 #' @rdname subsetting
@@ -67,7 +57,7 @@ NULL
 #'
 #' 1:5 %sge% 2
 #' 1:5 %sge% 4
-`%sge%` <- function(e1, e2) {e1[e1 >= e2]}
+`%sge%` <- function(e1, e2) {e1[e1 %ge% e2]}
 
 #' @rdname subsetting
 #' @export
@@ -75,7 +65,7 @@ NULL
 #'
 #' 1:5 %sg% 2
 #' 1:5 %sg% 4
-`%sg%` <- function(e1, e2) {e1[e1 > e2]}
+`%sg%` <- function(e1, e2) {e1[e1 %g% e2]}
 
 #' @rdname subsetting
 #' @export
@@ -83,7 +73,7 @@ NULL
 #'
 #' 1:5 %sle% 2
 #' 1:5 %sle% 4
-`%sle%` <- function(e1, e2) {e1[e1 <= e2]}
+`%sle%` <- function(e1, e2) {e1[e1 %le% e2]}
 
 #' @rdname subsetting
 #' @export
@@ -91,7 +81,7 @@ NULL
 #'
 #' 1:5 %sl% 2
 #' 1:5 %sl% 4
-`%sl%` <- function(e1, e2) {e1[e1 < e2]}
+`%sl%` <- function(e1, e2) {e1[e1 %l% e2]}
 
 #' @rdname subsetting
 #' @export

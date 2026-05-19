@@ -56,10 +56,11 @@ e1 \%?grepl\% e2
 e1 \%?!grepl\% e2
 }
 \arguments{
-\item{e1}{A number of vector to be evaluated and for which the indices will be returned}
+\item{e1}{A vector to be evaluated and for which the indices will be returned.}
 
-\item{e2}{A vector of one or two numbers used to denote the
-limits for logical comparison.}
+\item{e2}{The right hand side value passed to the underlying logical
+operator. See \code{\link{logicals}}, \code{\link{\%c\%}}, and
+\code{\link{\%e\%}} for operator-specific requirements.}
 }
 \value{
 A vector of the indices identifying which values of \code{e1} meet the logical conditions.
@@ -100,7 +101,7 @@ c("jack", "jill", "john", "jane") \%?in\% c("jill", "jane", "bill")
 c("jack", "jill", "john", "jane") \%?!in\% c("jill", "jane", "bill")
 
 1:5 \%?nin\% c(2, 99)
-c("jack", "jill", "john", "jane") \%snin\% c("jill", "jane", "bill")
+c("jack", "jill", "john", "jane") \%?nin\% c("jill", "jane", "bill")
 
 11:15 \%?==\% c(11, 1, 13, 15, 15)
 

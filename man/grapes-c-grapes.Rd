@@ -9,11 +9,12 @@ e1 \%c\% e2
 \arguments{
 \item{e1}{The values to be operated on, on the left hand side}
 
-\item{e2}{A character string (it MUST be quoted) containing all
-the operators and their values to apply to `e1`. Note that in
-this character string, operators can be chained together using either
-`|` or `&`. Parentheses are also supported and work as expected. See
-examples for more information on how this function is used.}
+\item{e2}{One non-empty character string (it MUST be quoted) containing
+the operators and values to apply to `e1`. Operators can be chained together
+using either `|` or `&`; these connectors must appear between complete
+conditions, not at the start or end of the string, and cannot be doubled.
+Parentheses are also supported and work as expected. See examples for more
+information on how this function is used.}
 }
 \value{
 a logical vector
