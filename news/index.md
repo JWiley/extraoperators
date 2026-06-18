@@ -2,6 +2,8 @@
 
 ## extraoperators 0.4.0
 
+CRAN release: 2026-05-20
+
 - Added any variants of logical operators, including `%anyin%`, range
   helpers, equality helpers, chain and set helpers, regular expression
   helpers, and `%anyflipIn%`.
